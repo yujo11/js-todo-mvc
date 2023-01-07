@@ -24,6 +24,26 @@ const app = () => {
       todoController.remove(index);
     }
   });
+
+  $("#todo-list").addEventListener("dblclick", ({ target }) => {
+    const index = target.closest("li").dataset.index;
+
+    if (target.classList.contains("label")) {
+      todoController.edit(index);
+    }
+  });
+
+  $("#todo-list").addEventListener("keyup", ({ target, key }) => {
+    const index = target.closest("li").dataset.index;
+
+    if (target.classList.contains("edit") && key === "Enter") {
+      todoController.save(index, target.value);
+    }
+
+    if (target.classList.contains("edit") && key === "Escape") {
+      todoController.cancel(index);
+    }
+  });
 };
 
 window.addEventListener("DOMContentLoaded", () => {

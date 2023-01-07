@@ -3,7 +3,7 @@ const Todo = class {
     this.id = Date.now();
     this.title = title;
     this.completed = false;
-    this.isEditing = false;
+    this.editing = false;
   }
 
   toggle() {
@@ -11,12 +11,16 @@ const Todo = class {
   }
 
   edit() {
-    this.isEditing = true;
+    this.editing = true;
+  }
+
+  cancel() {
+    this.editing = false;
   }
 
   save(title) {
     this.title = title;
-    this.isEditing = false;
+    this.editing = false;
   }
 };
 

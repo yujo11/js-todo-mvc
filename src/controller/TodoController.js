@@ -37,6 +37,12 @@ const TodoController = class {
     this.todoView.renderAll(this.todos);
   }
 
+  cancel(index) {
+    this.todos[index].cancel();
+
+    this.todoView.renderAll(this.todos);
+  }
+
   save(index, title) {
     this.todos[index].save(title);
 
