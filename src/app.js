@@ -9,10 +9,10 @@ const app = () => {
 
     const title = e.target.elements["new-todo-title"].value.trim();
 
-    if (!title.length) return;
-
-    e.target.reset();
-    todoController.add(title);
+    if (title.length) {
+      todoController.add(title);
+      e.target.reset();
+    }
   });
 
   $("#todo-list").addEventListener("click", ({ target }) => {
@@ -36,22 +36,25 @@ const app = () => {
   $("#todo-list").addEventListener("keyup", ({ target, key }) => {
     const index = target.closest("li").dataset.index;
 
-    if (target.classList.contains("edit") && key === "Enter") {
-      todoController.save(index, target.value);
-    }
+    if (!target.classList.contains("edit")) return;
 
-    if (target.classList.contains("edit") && key === "Escape") {
+    if (key === "Enter") {
+      todoController.save(index, target.value);
+    } else if (key === "Escape") {
       todoController.cancel(index);
     }
   });
 
   $(".filters").addEventListener("click", ({ target }) => {
-    if (target.classList.contains("all")) {
-      todoController.selectAll();
-    } else if (target.classList.contains("active")) {
-      todoController.selectActive();
-    } else if (target.classList.contains("completed")) {
-      todoController.selectCompleted();
+    switch (true) {
+      case target.classList.contains("active"):
+        todoController.selectActive();
+
+      case target.classList.contains("completed"):
+        todoController.selectCompleted();
+
+      default:
+        todoController.selectAll();
     }
   });
 };
