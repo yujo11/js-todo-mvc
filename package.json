@@ -1,0 +1,7 @@
+{
+  "source": "./src/index.ts",
+  "types": "./dist/types.d.ts",
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  }
+}
