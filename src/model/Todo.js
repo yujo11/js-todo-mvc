@@ -1,4 +1,4 @@
-class Todo {
+const Todo = class {
   constructor(title) {
     this.title = title;
     this.completed = false;
@@ -17,4 +17,6 @@ class Todo {
     this.title = title;
     this.isEditing = false;
   }
-}
+};
+
+export default Todo;
