@@ -1,10 +1,7 @@
 import { $ } from "../utils/querySelector.js";
-import View from "./View.js";
 
-const TodoView = class extends View {
-  constructor(...arg) {
-    super(...arg);
-
+const TodoView = class {
+  constructor() {
     this.$todoList = $("#todo-list");
     this.$todoCount = $(".todo-count");
   }

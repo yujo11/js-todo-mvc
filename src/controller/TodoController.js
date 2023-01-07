@@ -1,11 +1,8 @@
-import Controller from "./Controller.js";
 import Todo from "../model/Todo.js";
 import TodoView from "../view/TodoView.js";
 
-const TodoController = class extends Controller {
-  constructor(...arg) {
-    super(...arg);
-
+const TodoController = class {
+  constructor() {
     this.todoView = new TodoView();
     this.todos = [];
   }
