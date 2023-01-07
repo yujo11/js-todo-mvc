@@ -44,6 +44,16 @@ const app = () => {
       todoController.cancel(index);
     }
   });
+
+  $(".filters").addEventListener("click", ({ target }) => {
+    if (target.classList.contains("all")) {
+      todoController.selectAll();
+    } else if (target.classList.contains("active")) {
+      todoController.selectActive();
+    } else if (target.classList.contains("completed")) {
+      todoController.selectCompleted();
+    }
+  });
 };
 
 window.addEventListener("DOMContentLoaded", () => {

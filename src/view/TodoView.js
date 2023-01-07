@@ -4,11 +4,10 @@ const TodoView = class {
   constructor() {
     this.$todoList = $("#todo-list");
     this.$todoCount = $(".todo-count");
+    this.$filters = $(".filters");
   }
 
-  renderAll(todos) {
-    console.log("todos", todos);
-
+  renderTodos(todos) {
     this.$todoList.innerHTML = todos
       .map((todo, index) => {
         return todo.editing
@@ -39,6 +38,16 @@ const TodoView = class {
 
   renderCount(count) {
     this.$todoCount.innerHTML = `총 <strong>${count}</strong> 개`;
+  }
+
+  renderFilter(filter) {
+    const $filter = this.$filters.querySelector(`.${filter}`);
+
+    this.$filters
+      .querySelectorAll("a")
+      .forEach(($filter) => $filter.classList.remove("selected"));
+
+    $filter.classList.add("selected");
   }
 };
 

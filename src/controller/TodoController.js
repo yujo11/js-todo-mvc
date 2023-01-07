@@ -14,39 +14,61 @@ const TodoController = class {
   add(title) {
     this.todos.push(new Todo(title));
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
     this.todoView.renderCount(this.todos.length);
   }
 
   remove(index) {
     this.todos.splice(index, 1);
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
     this.todoView.renderCount(this.todos.length);
   }
 
   toggle(index) {
     this.todos[index].toggle();
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
   }
 
   edit(index) {
     this.todos[index].edit();
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
   }
 
   cancel(index) {
     this.todos[index].cancel();
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
   }
 
   save(index, title) {
     this.todos[index].save(title);
 
-    this.todoView.renderAll(this.todos);
+    this.todoView.renderTodos(this.todos);
+  }
+
+  selectAll() {
+    this.todoView.renderTodos(this.todos);
+    this.todoView.renderFilter("all");
+    this.todoView.renderCount(this.todos.length);
+  }
+
+  selectCompleted() {
+    const completedTodos = this.todos.filter((todo) => todo.completed);
+
+    this.todoView.renderTodos(completedTodos);
+    this.todoView.renderFilter("completed");
+    this.todoView.renderCount(completedTodos.length);
+  }
+
+  selectActive() {
+    const activeTodos = this.todos.filter((todo) => !todo.completed);
+
+    this.todoView.renderTodos(activeTodos);
+    this.todoView.renderFilter("active");
+    this.todoView.renderCount(activeTodos.length);
   }
 };
 
