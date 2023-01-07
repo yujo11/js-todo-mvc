@@ -1,6 +1,6 @@
 import Todo from "../model/Todo.js";
 
-class TodoController {
+const TodoController = class {
   constructor() {
     this.todos = [];
   }
@@ -28,4 +28,6 @@ class TodoController {
   save(index, title) {
     this.todos[index].save(title);
   }
-}
+};
+
+export default TodoController;
