@@ -13,6 +13,10 @@
   </a>
 </p>
 
+<div align="middle">
+  <a href="https://yujo11.github.io/js-todo-mvc/" target="_blank"> 🖥 데모 사이트 </a>
+</div>
+
 ## 🎯 요구사항
 
 - [ ] todo list에 todoItem을 키보드로 입력하여 추가하기
