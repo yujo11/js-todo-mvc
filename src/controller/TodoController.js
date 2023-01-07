@@ -1,6 +1,6 @@
-import Todo from "./Todo.js";
+import Todo from "../model/Todo.js";
 
-class Todos {
+class TodoController {
   constructor() {
     this.todos = [];
   }
