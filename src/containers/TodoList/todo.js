@@ -8,7 +8,7 @@ class Todo {
             text
         }
 
-        this.todoList.push(newTodo)
+        this.todoList = [newTodo, ...this.todoList]
     }
 }
 
