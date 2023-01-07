@@ -8,4 +8,8 @@ export default class List {
   get(itemId) {
     return this.#items.find(({ id }) => id === itemId);
   }
+
+  remove(itemId) {
+    this.#items = this.#items.filter(({ id }) => id === itemId);
+  }
 }

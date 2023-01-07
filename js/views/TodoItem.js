@@ -29,4 +29,8 @@ export default class TodoItem {
 
     this.#node.classList.toggle("completed");
   }
+
+  remove() {
+    this.#node.remove();
+  }
 }
