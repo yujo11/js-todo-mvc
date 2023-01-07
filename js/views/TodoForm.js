@@ -14,7 +14,9 @@ export default class TodoForm {
 
       const content = new TodoInput().value;
 
-      console.log(content);
+      if (!content) {
+        return;
+      }
 
       cb(content);
 
