@@ -9,12 +9,9 @@
   <body>
     <div class="todoapp">
       <h1>TODOS</h1>
-      <input
-        id="new-todo-title"
-        class="new-todo"
-        placeholder="할일을 추가해주세요"
-        autofocus
-      />
+      <form id="new-todo-form">
+        <input id="new-todo-title" class="new-todo" placeholder="할일을 추가해주세요" autofocus />
+      </form>
       <main>
         <input class="toggle-all" type="checkbox" />
         <ul id="todo-list" class="todo-list"></ul>
@@ -35,5 +32,5 @@
       </main>
     </div>
   </body>
-  <script type="module" src="./src/index.js"></script>
+  <script type="module" src="./src/app.js"></script>
 </html>
