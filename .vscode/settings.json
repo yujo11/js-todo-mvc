@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["todos"]
+  "cSpell.words": ["todos"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "prettier.useEditorConfig": true,
+  "prettier.enable": true
 }
