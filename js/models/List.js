@@ -4,4 +4,8 @@ export default class List {
   add(item) {
     this.#items.push(item);
   }
+
+  get(itemId) {
+    return this.#items.find(({ id }) => id === itemId);
+  }
 }

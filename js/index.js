@@ -1,3 +1,5 @@
 import { run } from "./controllers/index.js";
 
-run();
+document.addEventListener("DOMContentLoaded", () => {
+  run();
+});

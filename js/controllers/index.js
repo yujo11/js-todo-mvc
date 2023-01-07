@@ -14,4 +14,10 @@ export const run = () => {
     list.add(newItem);
     $todoList.add(newItem);
   });
+
+  $todoList.onClick((itemId) => {
+    const item = list.get(itemId);
+    item.mode = "completed";
+    $todoList.toggle(item);
+  });
 };
