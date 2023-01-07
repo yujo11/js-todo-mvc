@@ -13,6 +13,10 @@
   </a>
 </p>
 
+<div align="middle">
+  <a href="https://yujo11.github.io/js-todo-mvc/" target="_blank"> 🖥 데모 사이트 </a>
+</div>
+
 ## 🎯 요구사항
 
 - [x] todo list에 todoItem을 키보드로 입력하여 추가하기
@@ -22,6 +26,7 @@
 - [x] todo list의 item갯수를 count한 갯수를 리스트의 하단에 보여주기
 - [x] todo list의 상태값을 확인하여, 해야할 일과, 완료한 일을 클릭하면 해당 상태의 아이템만 보여주기
 - [x] localStorage에 데이터를 저장하여, TodoItem의 CRUD를 반영하기. 따라서 새로고침하여도 저장된 데이터를 확인할 수 있어야 함
+
 
 <br/>
 
