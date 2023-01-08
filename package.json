@@ -1,0 +1,9 @@
+{
+  "name": "js-todo-mvc",
+  "version": "1.0.0",
+  "description": "JS MVC패턴으로 구현하는 TodoList",
+  "main": "src/index.js",
+  "repository": "https://github.com/yujo11/js-todo-mvc",
+  "author": "",
+  "license": "MIT"
+}
