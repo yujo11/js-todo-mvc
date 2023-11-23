@@ -1,6 +1,7 @@
 import Title from "./Title.js";
+import TodoForm from "./TodoForm.js";
 
-export default function Header({ target }) {
+export default function Header({ target, onSubmit }) {
   const headerElement = document.createElement("header");
   headerElement.setAttribute("class", "app__header");
 
@@ -9,5 +10,10 @@ export default function Header({ target }) {
   // 제목
   new Title({
     target: headerElement,
+  });
+
+  new TodoForm({
+    target: headerElement,
+    onSubmit,
   });
 }

@@ -9,5 +9,10 @@ const DUMY = [
 
 export default function App({ target }) {
   // header
-  const header = new Header({ target });
+  const header = new Header({
+    target,
+    onSubmit: (e) => {
+      console.log(e);
+    },
+  });
 }
