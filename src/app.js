@@ -1,18 +1,15 @@
 import Header from "./Components/Header/Header.js";
+import { getTodoList, setTodoList } from "./Storage/LocalStorage.js";
 
-const DUMY = [
-  { id: "111", title: "테스트용 더미1", isCompleted: false },
-  { id: "222", title: "테스트용 더미2", isCompleted: false },
-  { id: "333", title: "테스트용 더미3", isCompleted: false },
-  { id: "444", title: "테스트용 더미4", isCompleted: false },
-];
-
+console.log(getTodoList());
 export default function App({ target }) {
   // header
-  const header = new Header({
+  const setState = () => {};
+
+  new Header({
     target,
-    onSubmit: (e) => {
-      console.log(e);
+    onSubmit: (newTodo) => {
+      setTodoList(newTodo);
     },
   });
 }
