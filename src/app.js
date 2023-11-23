@@ -1,15 +1,22 @@
 import Header from "./Components/Header/Header.js";
 import { getTodoList, setTodoList } from "./Storage/LocalStorage.js";
 
-console.log(getTodoList());
 export default function App({ target }) {
-  // header
-  const setState = () => {};
+  this.state = {
+    todoList: [],
+  };
 
+  const setState = () => {
+    this.state.todoList = getTodoList();
+    console.log(this.state);
+  };
+  // header
   new Header({
     target,
     onSubmit: (newTodo) => {
       setTodoList(newTodo);
     },
   });
+
+  setState();
 }
