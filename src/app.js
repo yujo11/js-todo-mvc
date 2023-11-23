@@ -1,4 +1,5 @@
 import Header from "./Components/Header/Header.js";
+import TodoList from "./Components/List/TodoList.js";
 import { getTodoList, setTodoList } from "./Storage/LocalStorage.js";
 
 export default function App({ target }) {
@@ -8,14 +9,20 @@ export default function App({ target }) {
 
   const setState = () => {
     this.state.todoList = getTodoList();
-    console.log(this.state);
+    todoList.setState(this.state.todoList);
   };
   // header
   new Header({
     target,
     onSubmit: (newTodo) => {
       setTodoList(newTodo);
+      setState();
     },
+  });
+
+  const todoList = new TodoList({
+    target,
+    state: this.state.todoList,
   });
 
   setState();
