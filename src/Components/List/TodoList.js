@@ -1,3 +1,5 @@
+import List from "./List.js";
+
 export default function TodoList({ target, state }) {
   const ulElement = document.createElement("ul");
   ulElement.setAttribute("class", "app__todolist");
@@ -7,10 +9,21 @@ export default function TodoList({ target, state }) {
 
   this.setState = (newState) => {
     this.state = newState;
-    console.log(newState);
+    this.render();
   };
 
-  this.render = () => {};
+  this.render = () => {
+    ulElement.replaceChildren();
+
+    this.state &&
+      this.state.forEach((item) => {
+        console.log(item);
+        new List({
+          target: ulElement,
+          state: item,
+        });
+      });
+  };
 
   this.render();
 }
