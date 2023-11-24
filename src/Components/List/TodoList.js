@@ -36,6 +36,11 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
     const { id } = target.closest("li").dataset ?? null;
     if (!id) return;
 
+    if (this.state.editing && target.className !== "todolost__title") {
+      alert("현재 수정중에는 삭제, 변경이 불가능합니다 🥹 todo 수정을 완료해주세요");
+      return;
+    }
+
     if (target.className === "todolist__checkbox-label") {
       onToggle(id);
       return;
