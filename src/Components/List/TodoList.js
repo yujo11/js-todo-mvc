@@ -1,6 +1,6 @@
 import List from "./List.js";
 
-export default function TodoList({ target, state }) {
+export default function TodoList({ target, state, onToggle, onDelete }) {
   const ulElement = document.createElement("ul");
   ulElement.setAttribute("class", "app__todolist");
   target.appendChild(ulElement);
@@ -17,7 +17,6 @@ export default function TodoList({ target, state }) {
 
     this.state &&
       this.state.forEach((item) => {
-        console.log(item);
         new List({
           target: ulElement,
           state: item,
@@ -26,4 +25,20 @@ export default function TodoList({ target, state }) {
   };
 
   this.render();
+
+  ulElement.addEventListener("click", (e) => {
+    const target = e.target;
+    const { id } = target.closest("li").dataset;
+
+    if (!id) return;
+
+    if (target.className === "todolist__checkbox-label") {
+      onToggle(id);
+      return;
+    }
+
+    // if (target.className === "todolist__deletebutton") {
+    //   onDelete;
+    // }
+  });
 }

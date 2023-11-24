@@ -1,7 +1,7 @@
 import { makeId } from "../function/util.js";
 const STORAGE_KEY = "TodoList";
 
-export function setTodoList(newTodoTitle) {
+export function setNewTodoList(newTodoTitle) {
   try {
     const newId = makeId();
 
@@ -17,6 +17,18 @@ export function setTodoList(newTodoTitle) {
   } catch (e) {
     alert("새로운 TodoList 업로드에 실패했습니다. 🥹");
     throw new Error("new TodoList set 실패!");
+  }
+}
+
+export function updateTodoList(newTodoList) {
+  try {
+    const updatedData = JSON.stringify(newTodoList);
+
+    localStorage.setItem(STORAGE_KEY, updatedData);
+  } catch (e) {
+    alert("List 를 업데이트하는 과정에서 오류가 발생했습니다! 😡");
+
+    throw new Error("update 과정에서 실패!");
   }
 }
 

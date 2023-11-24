@@ -4,3 +4,17 @@ export function makeId() {
 
   return `${date}${randomNum}`;
 }
+
+export function toggleCompleted({ list, id }) {
+  const newList = list.map((item) => {
+    if (item.id === id) {
+      return {
+        ...item,
+        isCompleted: !item.isCompleted,
+      };
+    }
+    return item;
+  });
+
+  return newList;
+}
