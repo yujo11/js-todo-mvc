@@ -14,11 +14,11 @@ export default function List({ target, state }) {
     id,
   });
 
-  const spanElement = document.createElement("span");
-  spanElement.setAttribute("class", "todolost__title");
-  spanElement.textContent = title;
+  const divElement = document.createElement("div");
+  divElement.setAttribute("class", "todolost__title");
+  divElement.textContent = title;
 
-  liElement.appendChild(spanElement);
+  liElement.appendChild(divElement);
 
   const buttonElement = document.createElement("button");
   buttonElement.setAttribute("class", "todolist__deletebutton");
