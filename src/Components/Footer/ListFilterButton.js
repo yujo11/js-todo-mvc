@@ -1,4 +1,8 @@
 export default function ListFilterButton({ target, option, text, isDefault }) {
+  const liElement = document.createElement("li");
+  liElement.setAttribute("class", "footer__filter-li");
+  target.appendChild(liElement);
+
   const inputElement = document.createElement("input");
   inputElement.setAttribute("id", option);
   inputElement.setAttribute("class", "footer__filter-input");
@@ -10,12 +14,12 @@ export default function ListFilterButton({ target, option, text, isDefault }) {
     inputElement.setAttribute("checked", "true");
   }
 
-  target.appendChild(inputElement);
+  liElement.appendChild(inputElement);
 
   const labelElement = document.createElement("label");
   labelElement.setAttribute("class", "footer__filter-label");
   labelElement.setAttribute("for", option);
   labelElement.innerText = text;
 
-  target.appendChild(labelElement);
+  liElement.appendChild(labelElement);
 }

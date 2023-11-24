@@ -9,13 +9,16 @@ const filterOptions = [
 export default function ListFilter({ target }) {
   const formElement = document.createElement("form");
   formElement.setAttribute("class", "footer__filter-form");
-
   target.appendChild(formElement);
+
+  const ulElement = document.createElement("ul");
+  ulElement.setAttribute("class", "footer__filter-ul");
+  formElement.appendChild(ulElement);
 
   filterOptions &&
     filterOptions.forEach(({ option, text, isDefault }) => {
       new ListFilterButton({
-        target: formElement,
+        target: ulElement,
         isDefault,
         option,
         text,
