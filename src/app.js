@@ -1,7 +1,7 @@
 import Header from "./Components/Header/Header.js";
 import TodoList from "./Components/List/TodoList.js";
 import { getTodoList, setNewTodoList, updateTodoList } from "./Storage/LocalStorage.js";
-import { deleteTodo, toggleCompleted } from "./function/util.js";
+import { deleteTodo, editTodo, toggleCompleted } from "./function/util.js";
 
 export default function App({ target }) {
   this.state = {
@@ -41,8 +41,15 @@ export default function App({ target }) {
       updateTodoList(deletedList);
       setState();
     },
+    // 실시간 반영이 좋을까... 아니면 엔터에 맞게 수정이 좋을까..
     onEdited: ({ id, editedTitle }) => {
-      console.log(id, editedTitle);
+      const editedList = editTodo({
+        list: this.state.todoList,
+        id,
+        editedTitle,
+      });
+      updateTodoList(editedList);
+      setState();
     },
   });
 

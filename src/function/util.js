@@ -21,3 +21,16 @@ export function deleteTodo({ list, id }) {
   const deletedList = list.filter((item) => item.id !== id);
   return deletedList;
 }
+
+export function editTodo({ list, id, editedTitle }) {
+  const editedList = list.map((item) => {
+    if (item.id === id) {
+      return {
+        ...item,
+        title: editedTitle,
+      };
+    }
+    return item;
+  });
+  return editedList;
+}
