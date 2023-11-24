@@ -1,3 +1,5 @@
+import ListTitle from "./LIstTitle.js";
+import ListButton from "./ListButton.js";
 import ListCheckbox from "./ListCheckbox.js";
 
 export default function List({ target, state }) {
@@ -14,14 +16,12 @@ export default function List({ target, state }) {
     id,
   });
 
-  const divElement = document.createElement("div");
-  divElement.setAttribute("class", "todolost__title");
-  divElement.textContent = title;
+  new ListTitle({
+    target: liElement,
+    title,
+  });
 
-  liElement.appendChild(divElement);
-
-  const buttonElement = document.createElement("button");
-  buttonElement.setAttribute("class", "todolist__deletebutton");
-  buttonElement.textContent = "Delete";
-  liElement.appendChild(buttonElement);
+  new ListButton({
+    target: liElement,
+  });
 }
