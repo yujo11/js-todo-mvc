@@ -37,8 +37,9 @@ export default function TodoList({ target, state, onToggle, onDelete }) {
       return;
     }
 
-    // if (target.className === "todolist__deletebutton") {
-    //   onDelete;
-    // }
+    if (target.className === "todolist__deletebutton") {
+      onDelete(id);
+      return;
+    }
   });
 }

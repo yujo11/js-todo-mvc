@@ -1,7 +1,7 @@
 import Header from "./Components/Header/Header.js";
 import TodoList from "./Components/List/TodoList.js";
 import { getTodoList, setNewTodoList, updateTodoList } from "./Storage/LocalStorage.js";
-import { toggleCompleted } from "./function/util.js";
+import { deleteTodo, toggleCompleted } from "./function/util.js";
 
 export default function App({ target }) {
   this.state = {
@@ -26,13 +26,19 @@ export default function App({ target }) {
     target,
     state: this.state.todoList,
     onToggle: (id) => {
-      const { todoList } = this.state;
-
       const newTodoList = toggleCompleted({
-        list: todoList,
+        list: this.state.todoList,
         id,
       });
       updateTodoList(newTodoList);
+      setState();
+    },
+    onDelete: (id) => {
+      const deletedList = deleteTodo({
+        list: this.state.todoList,
+        id,
+      });
+      updateTodoList(deletedList);
       setState();
     },
   });

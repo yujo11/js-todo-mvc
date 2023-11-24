@@ -1,7 +1,6 @@
 export function makeId() {
   const date = new Date().getTime();
   const randomNum = Math.random();
-
   return `${date}${randomNum}`;
 }
 
@@ -15,6 +14,10 @@ export function toggleCompleted({ list, id }) {
     }
     return item;
   });
-
   return newList;
+}
+
+export function deleteTodo({ list, id }) {
+  const deletedList = list.filter((item) => item.id !== id);
+  return deletedList;
 }
