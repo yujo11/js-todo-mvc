@@ -71,15 +71,14 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
     if (event.key === "Enter" || event.key === "Escape") {
       event.preventDefault();
       const target = event.target;
-      const updateTitle = target.innerText.trim();
+      const editedTitle = target.innerText.trim();
       const { id } = target.closest("li").dataset;
 
-      if (updateTitle !== this.state.saveTodoTitle) {
+      if (editedTitle !== this.state.saveTodoTitle) {
         onEdited({
-          title: updateTitle,
+          editedTitle,
           id,
         });
-        console.log("dsad");
       }
 
       target.removeAttribute("contenteditable");
