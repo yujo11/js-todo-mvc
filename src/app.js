@@ -41,6 +41,9 @@ export default function App({ target }) {
       updateTodoList(deletedList);
       setState();
     },
+    onEdited: ({ id, title }) => {
+      console.log(id, title);
+    },
   });
 
   setState();
