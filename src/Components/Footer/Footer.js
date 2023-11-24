@@ -1,4 +1,5 @@
 import ListCounter from "./ListCounter.js";
+import ListFilter from "./ListFilter.js";
 
 export default function Footer({ target, state }) {
   const footerElement = document.createElement("footer");
@@ -15,5 +16,9 @@ export default function Footer({ target, state }) {
   const listCounter = new ListCounter({
     target: footerElement,
     state: this.state,
+  });
+
+  new ListFilter({
+    target: footerElement,
   });
 }
