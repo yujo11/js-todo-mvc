@@ -46,9 +46,11 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   ulElement.addEventListener("click", (e) => {
     e.preventDefault();
     const target = e.target;
-    const { id } = target.closest("li").dataset;
-    console.log(target);
 
+    const liElement = target.closest("li");
+    if (!liElement) return;
+
+    const { id } = liElement.dataset;
     if (!id) return;
 
     if (this.state.isEditMode && target.className !== "todoList__title editing") {
