@@ -1,5 +1,5 @@
 import { ALERT_MESSAGE_EDIT } from "../../Constants.js";
-import { isUpdatedPrimitiveValue, isUpdatedReferenceValue } from "../../function/validate.js";
+import { isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
 export default function TodoList({ target, state, onToggle, onDelete, onEdited, toggleEditMode }) {
@@ -24,6 +24,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       list: newList,
       isEditMode: newIsEditMode,
     };
+
     this.render();
   };
 
@@ -50,7 +51,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
 
     if (!id) return;
 
-    if (this.state.isEditMode && target.className !== "todoList__title") {
+    if (this.state.isEditMode && target.className !== "todoList__title editing") {
       alert(ALERT_MESSAGE_EDIT);
       return;
     }
