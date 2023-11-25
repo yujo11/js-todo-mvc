@@ -21,16 +21,22 @@ export default function App({ target }) {
 
     this.state.totalCount = filteredList.length;
 
+    const { list, isEditMode } = this.state;
+
+    header.setState({ isEditMode: isEditMode });
+
     todoList.setState({
-      newList: this.state.list,
-      newIsEditMode: this.state.isEditMode,
+      newList: list,
+      newIsEditMode: isEditMode,
     });
+
     footer.setState(this.state.totalCount);
   };
 
   // header
-  new Header({
+  const header = new Header({
     target,
+    state: { isEditMode: this.state.isEditMode },
     onSubmit: (newTodo) => {
       setNewTodoList(newTodo);
       setState();
