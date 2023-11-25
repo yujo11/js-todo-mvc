@@ -1,3 +1,4 @@
+import { isUpdatedPrimitiveValue } from "../../function/validate.js";
 import ListCounter from "./ListCounter.js";
 import ListFilter from "./ListFilter.js";
 
@@ -10,8 +11,15 @@ export default function Footer({ target, state, onChange }) {
   this.state = state;
 
   this.setState = ({ newIsEditMode, newTotalCount }) => {
-    listCounter.setState({ newTotalCount });
-    listFilter.setState({ newIsEditMode });
+    if (isUpdatedPrimitiveValue(this.state.isEditMode, newIsEditMode)) {
+      this.state.isEditMode = newIsEditMode;
+      listFilter.setState({ newIsEditMode });
+    }
+
+    if (isUpdatedPrimitiveValue(this.state.totalCount, newTotalCount)) {
+      this.state.totalCount = newTotalCount;
+      listCounter.setState({ newTotalCount });
+    }
   };
 
   const listCounter = new ListCounter({
