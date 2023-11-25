@@ -9,9 +9,14 @@ export default function ListCheckbox({ target, isCompleted, id }) {
   const labelElement = document.createElement("label");
   labelElement.setAttribute("class", "todolist__checkbox-label");
   labelElement.setAttribute("for", `${id}_checkbox`);
-  labelElement.textContent = "꾸미기용 label";
 
   target.appendChild(labelElement);
+
+  const imgElement = document.createElement("img");
+  imgElement.setAttribute("src", "./src/Imgs/check_icon.svg");
+  imgElement.setAttribute("class", "todolist__checkbox-img");
+
+  labelElement.appendChild(imgElement);
 
   if (isCompleted) {
     inputElement.setAttribute("checked", true);

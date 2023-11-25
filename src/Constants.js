@@ -2,6 +2,8 @@ export const APP_TODO_TITLE = "TODOS";
 
 export const STORAGE_KEY = "TodoList";
 
+export const PLACE_HOLDER = "할 일을 입력하세요!";
+
 export const ALERT_MESSAGE_EDIT = "현재 Todo를 수정 중입니다. 🖐️ 수정을 완료 후 진행해 주세요!";
 
 export const ALERT_MESSAGE_INPUT = "2글자 이상 입력해주세요. ✏️";

@@ -46,6 +46,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     e.preventDefault();
     const target = e.target;
     const { id } = target.closest("li").dataset;
+    console.log(target);
 
     if (!id) return;
 
@@ -54,12 +55,12 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       return;
     }
 
-    if (target.className === "todolist__checkbox-label") {
+    if (target.className === "todolist__checkbox-label" || target.className === "todolist__checkbox-img") {
       onToggle(id);
       return;
     }
 
-    if (target.className === "todolist__deletebutton") {
+    if (target.className === "todolist__deletebutton" || target.className === "todolist__deletebutton-img") {
       onDelete(id);
       return;
     }
