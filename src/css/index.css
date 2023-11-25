@@ -9,28 +9,14 @@
 
 :root {
   /* color */
-  --color-black: #434a54;
   --color-light-red: #ed5565;
   --color-yellow: #ffce54;
   --color-green: #a0d468;
   --color-semi-white: #e6e9ed;
   --color-white: #fff;
   --color-semi-grey: #ccd1d9;
-  --color-dark-grey: #656d78;
 
-  /* shdow */
-  --shadow-all: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-
-  /* radius */
-  --radius-semi-large: 12px;
-  --radius-medium: 8px;
-  --radius-small: 4px;
-
-  /* font - size */
-  --fontsize-big: 2.4rem;
-  --fontsize-large: 2rem;
-  --fontsize-semi-large: 1.6rem;
-  --fontsize-medium: 1.4rem;
+  --shadow-all: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
 }
 
 html,

@@ -39,13 +39,22 @@
 
 .footer__filter-label {
   font-size: 1.6rem;
-  padding: 0.8rem 1rem;
-  height: 3rem;
+  padding: 0.6rem 1.2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border-radius: 8px;
   background-color: var(--color-semi-white);
   box-shadow: var(--shadow-all);
 
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.footer__filter-label:hover {
+  transform: scale(1.1);
 }
 
 .footer__filter-input:checked + .footer__filter-label {

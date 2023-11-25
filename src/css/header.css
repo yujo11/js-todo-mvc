@@ -17,6 +17,7 @@
 
   font-size: 4rem;
   font-weight: bolder;
+  letter-spacing: 0.6rem;
 }
 
 .header__form {
@@ -29,6 +30,7 @@
 
   background-color: var(--color-semi-white);
   border-radius: 8px;
+  box-shadow: var(--shadow-all);
 }
 
 .header__input {
