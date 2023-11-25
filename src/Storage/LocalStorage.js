@@ -1,5 +1,13 @@
 import { makeId } from "../function/util.js";
-const STORAGE_KEY = "TodoList";
+import {
+  ALERT_MESSAGE_UPDATE_LIST,
+  ALERT_MESSAGE_SET_LIST,
+  STORAGE_KEY,
+  ALERT_MESSAGE_GET_LIST,
+  ERROR_MESSAGE_SET_LIST,
+  ERROR_MESSAGE_UPDATE_LIST,
+  ERROR_MESSAGE_GET_LIST,
+} from "../Constants.js";
 
 export function setNewTodoList(newTodoTitle) {
   try {
@@ -15,8 +23,8 @@ export function setNewTodoList(newTodoTitle) {
 
     localStorage.setItem(STORAGE_KEY, newTodoList);
   } catch (e) {
-    alert("새로운 TodoList 업로드에 실패했습니다. 🥹");
-    throw new Error("new TodoList set 실패!");
+    alert(ALERT_MESSAGE_SET_LIST);
+    throw new Error(ERROR_MESSAGE_SET_LIST, e);
   }
 }
 
@@ -26,9 +34,8 @@ export function updateTodoList(newTodoList) {
 
     localStorage.setItem(STORAGE_KEY, updatedData);
   } catch (e) {
-    alert("List 를 업데이트하는 과정에서 오류가 발생했습니다! 😡");
-
-    throw new Error("update 과정에서 실패!");
+    alert(ALERT_MESSAGE_UPDATE_LIST);
+    throw new Error(ERROR_MESSAGE_UPDATE_LIST, e);
   }
 }
 
@@ -37,7 +44,7 @@ export function getTodoList() {
     const getData = JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
     return getData;
   } catch (e) {
-    alert("Todo 들을 가져오다가 실패했습니다. 🥹");
-    throw new Error("TodoList get 실패!");
+    alert(ALERT_MESSAGE_GET_LIST);
+    throw new Error(ERROR_MESSAGE_GET_LIST, e);
   }
 }
