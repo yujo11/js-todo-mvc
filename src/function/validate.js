@@ -1,4 +1,4 @@
-export function isReferenceValueUpdated({ prev, curr }) {
+export function isUpdatedReferenceValue({ prev, curr }) {
   const prevData = JSON.stringify(prev);
   const currentData = JSON.stringify(curr);
 
@@ -8,7 +8,7 @@ export function isReferenceValueUpdated({ prev, curr }) {
   return true;
 }
 
-export function isPrimitiveValueUpdated({ prev, curr }) {
+export function isUpdatedPrimitiveValue({ prev, curr }) {
   if (prev === curr) {
     return false;
   }

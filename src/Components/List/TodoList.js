@@ -1,4 +1,4 @@
-import { isReferenceValueUpdated } from "../../function/validate.js";
+import { isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
 export default function TodoList({ target, state, onToggle, onDelete, onEdited, toggleEditMode }) {
@@ -11,7 +11,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   };
 
   this.setState = ({ newList, newIsEditMode }) => {
-    if (!isReferenceValueUpdated({ prev: this.state.list, curr: newList })) {
+    if (!isUpdatedReferenceValue({ prev: this.state.list, curr: newList })) {
       this.state.isEditMode = newIsEditMode;
       return;
     }
