@@ -34,3 +34,13 @@ export function editTodo({ list, id, editedTitle }) {
   });
   return editedList;
 }
+
+export function listFilter({ list, option }) {
+  if (option === "All") {
+    return list;
+  }
+
+  const isTrue = option === "Completed";
+  const filted = list.filter((item) => item.isCompleted === isTrue);
+  return filted;
+}
