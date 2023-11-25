@@ -1,10 +1,5 @@
+import { EDIT_ALERT_MESSAGE, FILTER_OPTIONS } from "../../Constants.js";
 import ListFilterButton from "./ListFilterButton.js";
-
-const filterOptions = [
-  { option: "All", text: "전체 항목", isDefault: true },
-  { option: "Todo", text: "해야할 일", isDefault: false },
-  { option: "Completed", text: "완료한 일", isDefault: false },
-];
 
 export default function ListFilter({ target, state, onChange }) {
   const formElement = document.createElement("form");
@@ -15,8 +10,8 @@ export default function ListFilter({ target, state, onChange }) {
   ulElement.setAttribute("class", "footer__filter-ul");
   formElement.appendChild(ulElement);
 
-  filterOptions &&
-    filterOptions.forEach(({ option, text, isDefault }) => {
+  FILTER_OPTIONS &&
+    FILTER_OPTIONS.forEach(({ option, text, isDefault }) => {
       new ListFilterButton({
         target: ulElement,
         isDefault,
@@ -34,7 +29,7 @@ export default function ListFilter({ target, state, onChange }) {
 
   formElement.addEventListener("change", (e) => {
     if (this.state.isEditMode) {
-      alert("현재 todo 수정중입니다! 수정을 완료해주세요");
+      alert(EDIT_ALERT_MESSAGE);
       return;
     }
     const target = e.target;

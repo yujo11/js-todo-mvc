@@ -1,3 +1,4 @@
+import { EDIT_ALERT_MESSAGE } from "../../Constants.js";
 import { isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
@@ -43,11 +44,12 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   ulElement.addEventListener("click", (e) => {
     e.preventDefault();
     const target = e.target;
-    const { id } = target.closest("li").dataset ?? null;
+    const { id } = target.closest("li").dataset;
+
     if (!id) return;
 
-    if (this.state.isEditMode && target.className !== "todolost__title") {
-      alert("현재 수정중에는 삭제, 변경이 불가능합니다 🥹 todo 수정을 완료해주세요");
+    if (this.state.isEditMode && target.className !== "todoList__title") {
+      alert(EDIT_ALERT_MESSAGE);
       return;
     }
 
@@ -65,9 +67,10 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   ulElement.addEventListener("dblclick", (e) => {
     const target = e.target;
     const { isEditMode } = this.state;
-    if (target.className !== "todolost__title") return;
+    if (target.className !== "todoList__title") return;
+
     if (isEditMode) {
-      alert("이전 수정을 완료해주세요 ✏️");
+      alert(EDIT_ALERT_MESSAGE);
       return;
     }
 
@@ -84,11 +87,13 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
 
   const onEditingHandler = (event) => {
     if (event.key === "Enter" || event.key === "Escape") {
+      // 조건문 밖에 상수 선언?? / 혹은 안에서 상수 선언??
       event.preventDefault();
       const target = event.target;
       const editedTitle = target.innerText.trim();
       const { id } = target.closest("li").dataset;
 
+      // 만든 유틸 함수 사용하기
       if (editedTitle !== this.state.saveTodoTitle) {
         onEdited({
           editedTitle,
