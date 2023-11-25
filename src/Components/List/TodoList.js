@@ -1,18 +1,26 @@
+import { isReferenceValueUpdated } from "../../function/validate.js";
 import List from "./List.js";
 
-export default function TodoList({ target, state, onToggle, onDelete, onEdited }) {
+export default function TodoList({ target, state, onToggle, onDelete, onEdited, toggleEditMode }) {
   const ulElement = document.createElement("ul");
   ulElement.setAttribute("class", "app__todolist");
   target.appendChild(ulElement);
-
   this.state = {
-    editing: false,
+    ...state,
     saveTodoTitle: "",
-    list: state,
   };
 
-  this.setState = (newState) => {
-    this.state.list = newState;
+  this.setState = ({ newList, newIsEditMode }) => {
+    if (!isReferenceValueUpdated({ prev: this.state.list, curr: newList })) {
+      this.state.isEditMode = newIsEditMode;
+      return;
+    }
+
+    this.state = {
+      ...this.state,
+      list: newList,
+      isEditMode: newIsEditMode,
+    };
     this.render();
   };
 
@@ -20,6 +28,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
     ulElement.replaceChildren();
 
     const { list } = this.state;
+    console.log(list);
 
     list &&
       list.forEach((item) => {
@@ -32,11 +41,12 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
   this.render();
 
   ulElement.addEventListener("click", (e) => {
+    e.preventDefault();
     const target = e.target;
     const { id } = target.closest("li").dataset ?? null;
     if (!id) return;
 
-    if (this.state.editing && target.className !== "todolost__title") {
+    if (this.state.isEditMode && target.className !== "todolost__title") {
       alert("현재 수정중에는 삭제, 변경이 불가능합니다 🥹 todo 수정을 완료해주세요");
       return;
     }
@@ -54,9 +64,9 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
 
   ulElement.addEventListener("dblclick", (e) => {
     const target = e.target;
-    const { editing } = this.state;
+    const { isEditMode } = this.state;
     if (target.className !== "todolost__title") return;
-    if (editing) {
+    if (isEditMode) {
       alert("이전 수정을 완료해주세요 ✏️");
       return;
     }
@@ -66,7 +76,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
       target.focus();
     });
 
-    this.state.editing = true;
+    toggleEditMode(true);
     this.state.saveTodoTitle = target.innerText;
 
     target.addEventListener("keydown", handlerOnEditing);
@@ -88,7 +98,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited }
 
       target.removeAttribute("contenteditable");
       target.removeEventListener("keydown", handlerOnEditing);
-      this.state.editing = false;
+      toggleEditMode(false);
       this.state.saveTodoTitle = "";
     }
   };
