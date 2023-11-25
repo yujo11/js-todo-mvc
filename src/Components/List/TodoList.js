@@ -12,7 +12,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   };
 
   this.setState = ({ newList, newIsEditMode }) => {
-    if (!isUpdatedReferenceValue({ prev: this.state.list, curr: newList })) {
+    if (!isUpdatedReferenceValue(this.state.list, newList)) {
       this.state.isEditMode = newIsEditMode;
       return;
     }
@@ -29,7 +29,6 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     ulElement.replaceChildren();
 
     const { list } = this.state;
-    console.log(list);
 
     list &&
       list.forEach((item) => {

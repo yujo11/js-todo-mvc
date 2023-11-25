@@ -23,6 +23,7 @@ export default function TodoForm({ target, state, onSubmit }) {
       alert(EDIT_ALERT_MESSAGE);
       return;
     }
+
     const target = e.target.querySelector(".header__input");
     const newTodo = target.value.trim();
 

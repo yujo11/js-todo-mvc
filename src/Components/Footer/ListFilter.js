@@ -24,7 +24,6 @@ export default function ListFilter({ target, state, onChange }) {
 
   this.setState = ({ newIsEditMode }) => {
     this.state.isEditMode = newIsEditMode;
-    console.log(this.state);
   };
 
   formElement.addEventListener("change", (e) => {
