@@ -26,6 +26,7 @@ export default function TodoList({ targetElement, initialState, onToggle }) {
       const todoItem = new TodoItem({
         targetElement: fragment,
         todoState,
+        onToggle,
       });
     });
     todoListElement.appendChild(fragment);
@@ -34,20 +35,4 @@ export default function TodoList({ targetElement, initialState, onToggle }) {
   };
 
   this.render();
-
-  mainElement.addEventListener("click", (event) => {
-    const todoItem = event.target.closest("li");
-
-    if (todoItem != null) {
-      const { id, todoid } = event.target.dataset;
-
-      const actions = {
-        "todo-checkbox": onToggle,
-      };
-      if (actions[id] == null) {
-        return;
-      }
-      actions[id](Number(todoid));
-    }
-  });
 }
