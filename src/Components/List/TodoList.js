@@ -79,10 +79,10 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     toggleEditMode(true);
     this.state.saveTodoTitle = target.innerText;
 
-    target.addEventListener("keydown", handlerOnEditing);
+    target.addEventListener("keydown", onEditingHandler);
   });
 
-  const handlerOnEditing = (event) => {
+  const onEditingHandler = (event) => {
     if (event.key === "Enter" || event.key === "Escape") {
       event.preventDefault();
       const target = event.target;
@@ -97,7 +97,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       }
 
       target.removeAttribute("contenteditable");
-      target.removeEventListener("keydown", handlerOnEditing);
+      target.removeEventListener("keydown", onEditingHandler);
       toggleEditMode(false);
       this.state.saveTodoTitle = "";
     }
