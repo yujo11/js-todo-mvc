@@ -1,5 +1,6 @@
 const $todoInput = document.querySelector(".new-todo");
 const $todoList = document.querySelector(".todo-list");
+const $todoCount = document.querySelector(".todo-count");
 
 const init = () => {
 	$todoInput.addEventListener("keydown", (e) => {
@@ -68,6 +69,9 @@ const addTodo = (text) => {
 };
 
 const getTodo = () => {
+	const todos = JSON.parse(localStorage.getItem("todolist"));
+	const $todoCountItem = $todoCount.querySelector("strong");
+	$todoCountItem.textContent = todos.length;
 	return localStorage.getItem("todolist")
 		? JSON.parse(localStorage.getItem("todolist"))
 		: [];
