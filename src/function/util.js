@@ -40,7 +40,7 @@ export function listFilter({ list, option }) {
     return list;
   }
 
-  const isTrue = option === "Completed";
-  const filted = list.filter((item) => item.isCompleted === isTrue);
+  const isCompleted = option === "Completed";
+  const filted = list.filter((item) => item.isCompleted === isCompleted);
   return filted;
 }
