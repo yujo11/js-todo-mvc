@@ -1,7 +1,7 @@
 import ListCounter from "./ListCounter.js";
 import ListFilter from "./ListFilter.js";
 
-export default function Footer({ target, state }) {
+export default function Footer({ target, state, onChange }) {
   const footerElement = document.createElement("footer");
   footerElement.setAttribute("class", "app__footer");
 
@@ -20,5 +20,6 @@ export default function Footer({ target, state }) {
 
   new ListFilter({
     target: footerElement,
+    onChange,
   });
 }
