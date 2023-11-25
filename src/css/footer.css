@@ -48,6 +48,6 @@
   cursor: pointer;
 }
 
-/* .footer__filter-input:checked + .footer__filter-label {
-  background-color: red;
-} */
+.footer__filter-input:checked + .footer__filter-label {
+  background-color: var(--color-yellow);
+}
