@@ -80,6 +80,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     setTimeout(() => {
       target.focus();
     });
+    target.classList.add("editing");
 
     toggleEditMode(true);
     this.state.saveTodoTitle = target.innerText;
@@ -104,6 +105,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       }
 
       target.removeAttribute("contenteditable");
+      target.classList.remove("editing");
       target.removeEventListener("keydown", onEditingHandler);
       toggleEditMode(false);
       this.state.saveTodoTitle = "";

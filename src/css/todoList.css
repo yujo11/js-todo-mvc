@@ -1,0 +1,109 @@
+.app__todolist {
+  width: 100%;
+  height: 40rem;
+  margin-top: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--color-semi-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-all);
+
+  overflow-y: auto;
+  user-select: none;
+}
+
+.todolist__item {
+  width: 90%;
+  height: 4rem;
+  margin-top: 0.8rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+
+  background-color: var(--color-white);
+  transition: all 0.3s;
+}
+
+.todolist__item:hover {
+  transform: scale(1.03);
+}
+
+.todolsit__checkbox-input {
+  display: none;
+}
+
+.todolist__checkbox-label {
+  border: 1px solid var(--color-semi-grey);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.todolist__checkbox-label:hover {
+  transform: scale(1.2);
+}
+
+.todolist__checkbox-img {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
+}
+
+.todolsit__checkbox-input:checked + .todolist__checkbox-label {
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+}
+
+.todolsit__checkbox-input:checked + .todolist__checkbox-label .todolist__checkbox-img {
+  opacity: 1;
+}
+
+.todolist__deletebutton {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-light-red);
+  border-radius: 4px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.todolist__deletebutton:hover {
+  transform: scale(1.2);
+}
+
+.todolist__deletebutton-img {
+  width: 2rem;
+}
+
+.todoList__title {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 4rem;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+}
+
+.editing {
+  border: 2px solid var(--color-yellow);
+}
