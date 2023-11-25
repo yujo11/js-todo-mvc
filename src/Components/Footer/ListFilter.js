@@ -1,4 +1,4 @@
-import { EDIT_ALERT_MESSAGE, FILTER_OPTIONS } from "../../Constants.js";
+import { ALERT_MESSAGE_EDIT, FILTER_OPTIONS } from "../../Constants.js";
 import ListFilterButton from "./ListFilterButton.js";
 
 export default function ListFilter({ target, state, onChange }) {
@@ -28,7 +28,7 @@ export default function ListFilter({ target, state, onChange }) {
 
   formElement.addEventListener("change", (e) => {
     if (this.state.isEditMode) {
-      alert(EDIT_ALERT_MESSAGE);
+      alert(ALERT_MESSAGE_EDIT);
       return;
     }
     const target = e.target;

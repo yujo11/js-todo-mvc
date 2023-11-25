@@ -1,4 +1,4 @@
-import { EDIT_ALERT_MESSAGE } from "../../Constants.js";
+import { ALERT_MESSAGE_EDIT } from "../../Constants.js";
 import { isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
@@ -48,7 +48,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     if (!id) return;
 
     if (this.state.isEditMode && target.className !== "todoList__title") {
-      alert(EDIT_ALERT_MESSAGE);
+      alert(ALERT_MESSAGE_EDIT);
       return;
     }
 
@@ -69,7 +69,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     if (target.className !== "todoList__title") return;
 
     if (isEditMode) {
-      alert(EDIT_ALERT_MESSAGE);
+      alert(ALERT_MESSAGE_EDIT);
       return;
     }
 
