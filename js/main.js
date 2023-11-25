@@ -16,15 +16,18 @@ const init = () => {
 	$todoList.addEventListener("click", (e) => {
 		const $li = e.target.closest("li");
 		if ($li) {
-			const { className } = e.target;
+			const className = e.target.classList;
 			// 삭제
-			if (className === "destroy") {
+			if (className.contains("destroy")) {
 				const { id } = $li.dataset;
 				removeTodo(Number(id));
+			} else if (className.contains("toggle")) {
+				const $toggleInput = $li.querySelector(".toggle");
+				$toggleInput.classList.toggle("checked");
+				$li.classList.toggle("completed");
 			}
 		}
 	});
-
 	render();
 };
 
@@ -32,7 +35,6 @@ const init = () => {
 const render = () => {
 	$todoList.innerHTML = ``; // todoList 비우기
 	const currentTodo = getTodo();
-	console.log(currentTodo);
 	if (currentTodo.length) {
 		$todoList.innerHTML = currentTodo
 			.map((todos) => createHTMLString(todos))
