@@ -1,0 +1,42 @@
+.app__header {
+  width: 100%;
+  height: 12rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__title {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 4rem;
+  font-weight: bolder;
+}
+
+.header__form {
+  width: 90%;
+  height: 6rem;
+  display: flex;
+  margin: 0 2rem;
+
+  justify-content: center;
+
+  background-color: var(--color-semi-white);
+  border-radius: 8px;
+}
+
+.header__input {
+  width: 80%;
+  height: 100%;
+
+  font-size: 2rem;
+
+  outline: none;
+  background-color: var(--color-semi-white);
+}
