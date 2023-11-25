@@ -21,12 +21,12 @@ export default function App({ target }) {
 
     this.state.totalCount = filteredList.length;
 
-    const { list, isEditMode, totalCount } = this.state;
+    const { isEditMode, totalCount } = this.state;
 
     header.setState({ isEditMode: isEditMode });
 
     todoList.setState({
-      newList: list,
+      newList: filteredList,
       newIsEditMode: isEditMode,
     });
 

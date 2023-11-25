@@ -9,8 +9,8 @@ export default function ListCounter({ target, state }) {
   this.state = state;
 
   this.setState = ({ newTotalCount }) => {
-    if (isUpdatedPrimitiveValue({ prev: this.state.totalCount, curr: newTotalCount })) return;
-
+    if (!isUpdatedPrimitiveValue({ prev: this.state.totalCount, curr: newTotalCount })) return;
+    console.log(newTotalCount);
     this.state.totalCount = newTotalCount;
     this.render();
   };
