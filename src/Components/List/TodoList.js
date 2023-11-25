@@ -12,20 +12,19 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   };
 
   this.setState = ({ newList, newIsEditMode }) => {
-    const { list: prevList, isEditMode: prevEditMode } = this.state;
+    const { list: prevList } = this.state;
 
-    if (
-      isUpdatedReferenceValue(prevList, newList) || //
-      isUpdatedPrimitiveValue(prevEditMode, newIsEditMode)
-    ) {
-      this.state = {
-        ...this.state,
-        list: newList,
-        isEditMode: newIsEditMode,
-      };
-
-      this.render();
+    if (!isUpdatedReferenceValue(prevList, newList)) {
+      this.state.isEditMode = newIsEditMode;
+      return;
     }
+
+    this.state = {
+      ...this.state,
+      list: newList,
+      isEditMode: newIsEditMode,
+    };
+    this.render();
   };
 
   this.render = () => {
