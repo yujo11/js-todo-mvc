@@ -2,7 +2,12 @@ import TodoItemCheckBox from "./TodoItemCheckBox.js";
 import TodoItemContent from "./TodoItemContent.js";
 import TodoItemDeleteButton from "./TodoItemDeleteButton.js";
 
-export default function TodoItem({ targetElement, todoState, onToggle }) {
+export default function TodoItem({
+  targetElement,
+  todoState,
+  onToggle,
+  onDelete,
+}) {
   const todoItemElement = document.createElement("li");
   targetElement.appendChild(todoItemElement);
 
@@ -26,5 +31,6 @@ export default function TodoItem({ targetElement, todoState, onToggle }) {
   const todoDeleteButton = new TodoItemDeleteButton({
     targetElement: todoItemElement,
     todoState,
+    onDelete,
   });
 }

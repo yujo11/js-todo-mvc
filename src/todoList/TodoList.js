@@ -1,6 +1,11 @@
 import TodoItem from "./TodoItem.js";
 
-export default function TodoList({ targetElement, initialState, onToggle }) {
+export default function TodoList({
+  targetElement,
+  initialState,
+  onToggle,
+  onDelete,
+}) {
   const mainElement = document.createElement("main");
   targetElement.appendChild(mainElement);
 
@@ -27,6 +32,7 @@ export default function TodoList({ targetElement, initialState, onToggle }) {
         targetElement: fragment,
         todoState,
         onToggle,
+        onDelete,
       });
     });
     todoListElement.appendChild(fragment);

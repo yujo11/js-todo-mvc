@@ -21,5 +21,10 @@ export default function App({ targetElement }) {
 
       todoList.setState(nextState);
     },
+    onDelete: (todoId) => {
+      const nextState = todoList.state.filter((todo) => todo.id !== todoId);
+
+      todoList.setState(nextState);
+    },
   });
 }
