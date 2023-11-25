@@ -1,3 +1,5 @@
+import { EDIT_ALERT_MESSAGE, INPUT_ALERT_MESSAGE } from "../../Constants.js";
+
 export default function TodoForm({ target, state, onSubmit }) {
   const formElement = document.createElement("form");
   formElement.setAttribute("class", "header__form");
@@ -18,18 +20,18 @@ export default function TodoForm({ target, state, onSubmit }) {
 
     const { isEditMode } = this.state;
     if (isEditMode) {
-      alert("현재 todo를 수정중입니다! 완료후 새로운 todo를 추가해주세요");
+      alert(EDIT_ALERT_MESSAGE);
       return;
     }
     const target = e.target.querySelector(".header__input");
     const newTodo = target.value.trim();
 
-    if (newTodo.length > 2) {
+    if (newTodo.length > 1) {
       onSubmit(newTodo);
       target.value = "";
       return;
     }
 
-    alert("2글자 이상 입력해주세요");
+    alert(INPUT_ALERT_MESSAGE);
   });
 }
