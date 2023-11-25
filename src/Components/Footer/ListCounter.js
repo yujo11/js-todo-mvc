@@ -1,3 +1,5 @@
+import { isUpdatedPrimitiveValue } from "../../function/validate.js";
+
 export default function ListCounter({ target, state }) {
   const counterElement = document.createElement("div");
   counterElement.setAttribute("class", "footer__counter");
@@ -6,13 +8,15 @@ export default function ListCounter({ target, state }) {
 
   this.state = state;
 
-  this.setState = (newState) => {
-    this.state = newState;
+  this.setState = ({ newTotalCount }) => {
+    if (isUpdatedPrimitiveValue({ prev: this.state.totalCount, curr: newTotalCount })) return;
+
+    this.state.totalCount = newTotalCount;
     this.render();
   };
 
   this.render = () => {
-    counterElement.textContent = `총 ${this.state}개`;
+    counterElement.textContent = `총 ${this.state.totalCount}개`;
   };
 
   this.render();

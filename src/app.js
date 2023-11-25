@@ -21,7 +21,7 @@ export default function App({ target }) {
 
     this.state.totalCount = filteredList.length;
 
-    const { list, isEditMode } = this.state;
+    const { list, isEditMode, totalCount } = this.state;
 
     header.setState({ isEditMode: isEditMode });
 
@@ -30,7 +30,10 @@ export default function App({ target }) {
       newIsEditMode: isEditMode,
     });
 
-    footer.setState(this.state.totalCount);
+    footer.setState({
+      newTotalCount: totalCount,
+      newIsEditMode: isEditMode,
+    });
   };
 
   // header
@@ -85,7 +88,10 @@ export default function App({ target }) {
   //footer
   const footer = new Footer({
     target,
-    state: this.state.totalCount,
+    state: {
+      totalCount: this.state.totalCount,
+      isEditMode: this.state.isEditMode,
+    },
     onChange: (option) => {
       this.state.filterOption = option;
       setState();

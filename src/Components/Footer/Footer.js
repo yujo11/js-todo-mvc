@@ -9,17 +9,21 @@ export default function Footer({ target, state, onChange }) {
 
   this.state = state;
 
-  this.setState = (newState) => {
-    listCounter.setState(newState);
+  this.setState = ({ newIsEditMode, newTotalCount }) => {
+    listCounter.setState({ newTotalCount });
+    listFilter.setState({ newIsEditMode });
   };
 
   const listCounter = new ListCounter({
     target: footerElement,
-    state: this.state,
+    state: { totalCount: this.state.totalCount },
   });
 
-  new ListFilter({
+  const listFilter = new ListFilter({
     target: footerElement,
+    state: {
+      isEditMode: this.state.isEditMode,
+    },
     onChange,
   });
 }
