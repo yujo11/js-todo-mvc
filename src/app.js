@@ -23,7 +23,9 @@ export default function App({ target }) {
 
     const { isEditMode, totalCount } = this.state;
 
-    header.setState({ isEditMode: isEditMode });
+    header.setState({
+      newIsEditMode: isEditMode,
+    });
 
     todoList.setState({
       newList: filteredList,
