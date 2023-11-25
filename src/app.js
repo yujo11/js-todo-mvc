@@ -1,5 +1,5 @@
 import Title from "./Title.js";
-import TodoList from "./TodoList.js";
+import TodoList from "./todoList/TodoList.js";
 
 export default function App({ targetElement }) {
   const DUMMNY_DATA = [
