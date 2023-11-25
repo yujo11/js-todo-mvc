@@ -26,12 +26,15 @@ export default function ListFilter({ target, state, onChange }) {
     this.state.isEditMode = newIsEditMode;
   };
 
-  formElement.addEventListener("change", (e) => {
+  ulElement.addEventListener("click", (e) => {
     if (this.state.isEditMode) {
+      e.preventDefault();
       alert(ALERT_MESSAGE_EDIT);
       return;
     }
-    const target = e.target;
-    onChange(target.value);
+    const { value } = e.target.dataset;
+
+    if (!value) return;
+    onChange(value);
   });
 }
