@@ -1,6 +1,7 @@
 const $todoInput = document.querySelector(".new-todo");
 const $todoList = document.querySelector(".todo-list");
 const $todoCount = document.querySelector(".todo-count");
+const $filter = document.querySelector(".filters");
 
 const init = () => {
 	initEventListener();
@@ -23,14 +24,12 @@ const initEventListener = () => {
 		const $li = e.target.closest("li");
 		if ($li) {
 			const className = e.target.classList;
+			const { id } = $li.dataset;
 			// 삭제
 			if (className.contains("destroy")) {
-				const { id } = $li.dataset;
 				removeTodo(Number(id));
 			} else if (className.contains("toggle")) {
-				const $toggleInput = $li.querySelector(".toggle");
-				$toggleInput.classList.toggle("checked");
-				$li.classList.toggle("completed");
+				toggleTodo(Number(id));
 			}
 		}
 	});
@@ -71,6 +70,8 @@ const initEventListener = () => {
 const render = () => {
 	$todoList.innerHTML = ``; // todoList 비우기
 	const currentTodo = getTodo();
+	const $todoCountItem = $todoCount.querySelector("strong");
+	$todoCountItem.textContent = currentTodo.length;
 	if (currentTodo.length) {
 		$todoList.innerHTML = currentTodo
 			.map((todos) => createHTML(todos))
@@ -80,9 +81,11 @@ const render = () => {
 
 const createHTML = (todo) => {
 	return `
-    <li data-id="${todo.id}">
+    <li data-id="${todo.id}" class="${todo.completed ? "completed" : ""}">
 			<div class="view">
-                <input class="toggle" type="checkbox" />
+                <input class="toggle" type="checkbox" ${
+									todo.completed ? "checked" : ""
+								}/>
                 <label class="label">${todo.text}</label>
                 <button class="destroy"></button>
 			</div>
@@ -98,6 +101,7 @@ const addTodo = (text) => {
 		{
 			id: Date.now(),
 			text,
+			completed: false,
 		},
 	];
 	setTodo(updatedTodo);
@@ -107,28 +111,25 @@ const removeTodo = (id) => {
 	const currentTodo = getTodo();
 	const updatedTodo = currentTodo.filter((todo) => todo.id !== id);
 	setTodo(updatedTodo);
-	render();
+};
+
+const toggleTodo = (id) => {
+	const currentTodo = getTodo();
+	const updatedTodo = currentTodo.map((todo) =>
+		todo.id === id ? { ...todo, completed: !todo.completed } : todo
+	);
+	setTodo(updatedTodo);
 };
 
 const editTodo = (id, todoValue) => {
 	const currentTodo = getTodo();
-	const updatedTodo = [...currentTodo].map((todo) => {
-		if (todo.id === id) {
-			return {
-				...todo,
-				text: todoValue,
-			};
-		} else {
-			return todo;
-		}
-	});
+	const updatedTodo = currentTodo.map((todo) =>
+		todo.id === id ? { ...todo, text: todoValue } : todo
+	);
 	setTodo(updatedTodo);
 };
 
 const getTodo = () => {
-	const todos = JSON.parse(localStorage.getItem("todolist"));
-	const $todoCountItem = $todoCount.querySelector("strong");
-	$todoCountItem.textContent = todos.length;
 	return localStorage.getItem("todolist")
 		? JSON.parse(localStorage.getItem("todolist"))
 		: [];
