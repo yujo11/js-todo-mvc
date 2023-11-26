@@ -37,8 +37,15 @@ const initEventListener = () => {
 
 	$todoList.addEventListener("dblclick", (e) => {
 		const $li = e.target.closest("li");
-		console.log($li);
 		if ($li) {
+			// li 태그 수정 모드 삭제
+			document
+				.querySelectorAll(".todo-list li.editing")
+				.forEach(($currentLi) => {
+					$currentLi.classList.remove("editing");
+				});
+
+			// 수정 모드
 			const todoValue = $li.querySelector(".label").textContent;
 			$li.classList.add("editing");
 			const $editInput = $li.querySelector(".edit");
