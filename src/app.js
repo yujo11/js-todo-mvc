@@ -38,7 +38,6 @@ export default function App({ target }) {
     });
   };
 
-  // header
   const header = new Header({
     target,
     state: { isEditMode: this.state.isEditMode },
@@ -48,13 +47,13 @@ export default function App({ target }) {
     },
   });
 
-  // todoList
   const todoList = new TodoList({
     target,
     state: {
       list: this.state.list,
       isEditMode: this.state.isEditMode,
     },
+
     onToggle: (id) => {
       const newTodoList = toggleCompleted({
         list: this.state.list,
@@ -63,6 +62,7 @@ export default function App({ target }) {
       updateTodoList(newTodoList);
       setState();
     },
+
     onDelete: (id) => {
       const deletedList = deleteTodo({
         list: this.state.list,
@@ -71,7 +71,7 @@ export default function App({ target }) {
       updateTodoList(deletedList);
       setState();
     },
-    // 실시간 반영이 좋을까... 아니면 엔터에 맞게 수정이 좋을까..
+
     onEdited: ({ id, editedTitle }) => {
       const editedList = editTodo({
         list: this.state.list,
@@ -87,7 +87,6 @@ export default function App({ target }) {
     },
   });
 
-  //footer
   const footer = new Footer({
     target,
     state: {

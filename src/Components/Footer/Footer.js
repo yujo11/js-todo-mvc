@@ -5,18 +5,19 @@ import ListFilter from "./ListFilter.js";
 export default function Footer({ target, state, onChange }) {
   const footerElement = document.createElement("footer");
   footerElement.setAttribute("class", "app__footer");
-
   target.appendChild(footerElement);
 
   this.state = state;
 
   this.setState = ({ newIsEditMode, newTotalCount }) => {
-    if (isUpdatedPrimitiveValue(this.state.isEditMode, newIsEditMode)) {
+    const { isEditMode: prevEditMode, totalCount: prevTotalCount } = this.state;
+
+    if (isUpdatedPrimitiveValue(prevEditMode, newIsEditMode)) {
       this.state.isEditMode = newIsEditMode;
       listFilter.setState({ newIsEditMode });
     }
 
-    if (isUpdatedPrimitiveValue(this.state.totalCount, newTotalCount)) {
+    if (isUpdatedPrimitiveValue(prevTotalCount, newTotalCount)) {
       this.state.totalCount = newTotalCount;
       listCounter.setState({ newTotalCount });
     }

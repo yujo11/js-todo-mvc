@@ -18,22 +18,20 @@ export default function TodoForm({ target, state, onSubmit }) {
 
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const { isEditMode } = this.state;
     if (isEditMode) {
       alert(ALERT_MESSAGE_EDIT);
       return;
     }
 
-    const target = e.target.querySelector(".header__input");
-    const newTodo = target.value.trim();
+    const newTodo = inputElement.value.trim();
 
-    if (newTodo.length > 1) {
-      onSubmit(newTodo);
-      target.value = "";
+    if (newTodo.length < 2) {
+      alert(ALERT_MESSAGE_INPUT);
       return;
     }
 
-    alert(ALERT_MESSAGE_INPUT);
+    onSubmit(newTodo);
+    target.value = "";
   });
 }

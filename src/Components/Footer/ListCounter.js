@@ -1,9 +1,6 @@
-import { isUpdatedPrimitiveValue } from "../../function/validate.js";
-
 export default function ListCounter({ target, state }) {
   const counterElement = document.createElement("div");
   counterElement.setAttribute("class", "footer__counter");
-
   target.appendChild(counterElement);
 
   this.state = state;

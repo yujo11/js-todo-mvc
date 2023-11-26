@@ -18,6 +18,8 @@
   font-size: 4rem;
   font-weight: bolder;
   letter-spacing: 0.6rem;
+
+  user-select: none;
 }
 
 .header__form {

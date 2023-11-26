@@ -1,11 +1,12 @@
 import { ALERT_MESSAGE_EDIT } from "../../Constants.js";
-import { isUpdatedReferenceValue } from "../../function/validate.js";
+import { isUpdatedPrimitiveValue, isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
 export default function TodoList({ target, state, onToggle, onDelete, onEdited, toggleEditMode }) {
   const ulElement = document.createElement("ul");
   ulElement.setAttribute("class", "app__todolist");
   target.appendChild(ulElement);
+
   this.state = {
     ...state,
     saveTodoTitle: "",
@@ -13,7 +14,6 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
 
   this.setState = ({ newList, newIsEditMode }) => {
     const { list: prevList } = this.state;
-
     if (!isUpdatedReferenceValue(prevList, newList)) {
       this.state.isEditMode = newIsEditMode;
       return;
@@ -45,25 +45,24 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
 
   ulElement.addEventListener("click", (e) => {
     e.preventDefault();
-    const target = e.target;
+    const { target } = e;
+    const { className } = target;
 
-    const liElement = target.closest("li");
-    if (!liElement) return;
+    const { id } = e.target.closest("li")?.dataset ?? "";
 
-    const { id } = liElement.dataset;
     if (!id) return;
 
-    if (this.state.isEditMode && target.className !== "todoList__title editing") {
+    if (this.state.isEditMode && className !== "todoList__title editing") {
       alert(ALERT_MESSAGE_EDIT);
       return;
     }
 
-    if (target.className === "todolist__checkbox-label" || target.className === "todolist__checkbox-img") {
+    if (className === "todolist__checkbox-label" || className === "todolist__checkbox-img") {
       onToggle(id);
       return;
     }
 
-    if (target.className === "todolist__deletebutton" || target.className === "todolist__deletebutton-img") {
+    if (className === "todolist__deletebutton" || className === "todolist__deletebutton-img") {
       onDelete(id);
       return;
     }
@@ -72,6 +71,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   ulElement.addEventListener("dblclick", (e) => {
     const target = e.target;
     const { isEditMode } = this.state;
+
     if (target.className !== "todoList__title") return;
 
     if (isEditMode) {
@@ -80,27 +80,25 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     }
 
     target.setAttribute("contenteditable", "true");
+
     setTimeout(() => {
       target.focus();
     });
-    target.classList.add("editing");
 
+    target.classList.add("editing");
     toggleEditMode(true);
     this.state.saveTodoTitle = target.innerText;
-
     target.addEventListener("keydown", onEditingHandler);
   });
 
   const onEditingHandler = (event) => {
     if (event.key === "Enter" || event.key === "Escape") {
-      // 조건문 밖에 상수 선언?? / 혹은 안에서 상수 선언??
       event.preventDefault();
       const target = event.target;
       const editedTitle = target.innerText.trim();
       const { id } = target.closest("li").dataset;
-
       // 만든 유틸 함수 사용하기
-      if (editedTitle !== this.state.saveTodoTitle) {
+      if (isUpdatedPrimitiveValue(this.state.saveTodoTitle, editedTitle)) {
         onEdited({
           editedTitle,
           id,

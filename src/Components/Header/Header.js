@@ -11,13 +11,14 @@ export default function Header({ target, state, onSubmit }) {
   this.state = state;
 
   this.setState = ({ newIsEditMode }) => {
-    if (isUpdatedPrimitiveValue(this.state.isEditMode, newIsEditMode)) {
+    const { isEditMode: prevEditMode } = this.state;
+
+    if (isUpdatedPrimitiveValue(prevEditMode, newIsEditMode)) {
       this.state = { isEditMode: newIsEditMode };
       todoForm.setState(this.state);
     }
   };
 
-  // 제목
   new Title({
     target: headerElement,
   });
