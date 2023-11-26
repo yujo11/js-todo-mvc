@@ -3,6 +3,11 @@ const $todoList = document.querySelector(".todo-list");
 const $todoCount = document.querySelector(".todo-count");
 
 const init = () => {
+	initEventListener();
+	render();
+};
+
+const initEventListener = () => {
 	$todoInput.addEventListener("keydown", (e) => {
 		// 공백일때 추가 x
 		if (!e.target.value) {
@@ -29,7 +34,30 @@ const init = () => {
 			}
 		}
 	});
-	render();
+
+	$todoList.addEventListener("dblclick", (e) => {
+		const $li = e.target.closest("li");
+		console.log($li);
+		if ($li) {
+			const todoValue = $li.querySelector(".label").textContent;
+			$li.classList.add("editing");
+			const $editInput = $li.querySelector(".edit");
+			$editInput.value = todoValue;
+			$editInput.focus();
+		}
+	});
+
+	$todoList.addEventListener("keydown", (e) => {
+		const $li = e.target.closest("li");
+		if ($li) {
+			if (e.key === "Enter") {
+				$li.classList.remove("editing");
+				editTodo(Number($li.dataset.id), e.target.value);
+			} else if (e.key === "Escape") {
+				$li.classList.remove("editing");
+			}
+		}
+	});
 };
 
 // 그리기
@@ -38,12 +66,12 @@ const render = () => {
 	const currentTodo = getTodo();
 	if (currentTodo.length) {
 		$todoList.innerHTML = currentTodo
-			.map((todos) => createHTMLString(todos))
+			.map((todos) => createHTML(todos))
 			.join("");
 	}
 };
 
-const createHTMLString = (todo) => {
+const createHTML = (todo) => {
 	return `
     <li data-id="${todo.id}">
 			<div class="view">
@@ -68,6 +96,28 @@ const addTodo = (text) => {
 	setTodo(updatedTodo);
 };
 
+const removeTodo = (id) => {
+	const currentTodo = getTodo();
+	const updatedTodo = currentTodo.filter((todo) => todo.id !== id);
+	setTodo(updatedTodo);
+	render();
+};
+
+const editTodo = (id, todoValue) => {
+	const currentTodo = getTodo();
+	const updatedTodo = [...currentTodo].map((todo) => {
+		if (todo.id === id) {
+			return {
+				...todo,
+				text: todoValue,
+			};
+		} else {
+			return todo;
+		}
+	});
+	setTodo(updatedTodo);
+};
+
 const getTodo = () => {
 	const todos = JSON.parse(localStorage.getItem("todolist"));
 	const $todoCountItem = $todoCount.querySelector("strong");
@@ -78,15 +128,7 @@ const getTodo = () => {
 };
 
 const setTodo = (newTodos) => {
-	// 로컬 업데이트
 	localStorage.setItem("todolist", JSON.stringify(newTodos));
-	render();
-};
-
-const removeTodo = (id) => {
-	const currentTodo = getTodo();
-	const updatedTodo = currentTodo.filter((item) => item.id !== id);
-	setTodo(updatedTodo);
 	render();
 };
 
