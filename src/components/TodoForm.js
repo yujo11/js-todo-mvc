@@ -29,7 +29,7 @@ export default function TodoForm({ targetElement, onSubmit }) {
     onSubmit({
       id: newTodoId,
       content: newTodoContent,
-      isCompledted: newTodoIsCompleted,
+      isCompleted: newTodoIsCompleted,
     });
   });
 }

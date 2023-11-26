@@ -262,7 +262,7 @@ main {
   text-align: left;
 }
 
-.todo-count strong {
+.todo-count  {
   font-weight: 300;
 }
 
@@ -279,7 +279,7 @@ main {
   display: inline;
 }
 
-.filters li a {
+.filters li  {
   color: inherit;
   margin: 3px;
   padding: 3px 7px;
@@ -288,11 +288,11 @@ main {
   border-radius: 3px;
 }
 
-.filters li a:hover {
+.filters li:hover {
   border-color: rgba(175, 47, 47, 0.1);
 }
 
-.filters li a.selected {
+.filters li.selected {
   border-color: rgba(175, 47, 47, 0.2);
 }
 
