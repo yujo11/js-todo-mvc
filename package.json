@@ -5,5 +5,14 @@
   "main": "src/index.js",
   "repository": "https://github.com/yujo11/js-todo-mvc",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
 }
