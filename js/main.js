@@ -1,3 +1,5 @@
+import { getItem, setItem } from "../utils/storage.js";
+
 const $todoInput = document.querySelector(".new-todo");
 const $todoList = document.querySelector(".todo-list");
 const $todoCount = document.querySelector(".todo-count");
@@ -130,13 +132,11 @@ const editTodo = (id, todoValue) => {
 };
 
 const getTodo = () => {
-	return localStorage.getItem("todolist")
-		? JSON.parse(localStorage.getItem("todolist"))
-		: [];
+	return getItem("todolist", []);
 };
 
 const setTodo = (newTodos) => {
-	localStorage.setItem("todolist", JSON.stringify(newTodos));
+	setItem("todolist", newTodos);
 	render();
 };
 
