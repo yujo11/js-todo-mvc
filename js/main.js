@@ -49,8 +49,8 @@ const initEventListener = () => {
 			const $editInput = $li.querySelector(".edit");
 			const todoValue = $li.querySelector(".label").textContent;
 			$editInput.value = todoValue;
-			$editInput.focus();
 			$li.classList.add("editing");
+			$editInput.focus();
 		}
 	});
 
@@ -65,19 +65,11 @@ const initEventListener = () => {
 			}
 		}
 	});
-	window.addEventListener("hashchange", hashrender);
+	window.addEventListener("hashchange", render);
 };
 
 // 그리기
 const render = () => {
-	const currentTodo = getTodo();
-	const $todoCountValue = $todoCount.querySelector("strong");
-	$todoCountValue.textContent = currentTodo.length;
-	updateUI(currentTodo);
-};
-
-// url 변경되었을때 그리기
-const hashrender = () => {
 	const currentTodo = getTodo();
 	const filterOption = getHashFilter();
 	const filteredTodo = filterTodo(currentTodo, filterOption);
