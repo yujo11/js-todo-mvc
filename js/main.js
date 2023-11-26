@@ -3,7 +3,6 @@ import { getItem, setItem } from "../utils/storage.js";
 const $todoInput = document.querySelector(".new-todo");
 const $todoList = document.querySelector(".todo-list");
 const $todoCount = document.querySelector(".todo-count");
-const $filter = document.querySelector(".filters");
 
 const init = () => {
 	initEventListener();
@@ -47,11 +46,11 @@ const initEventListener = () => {
 				});
 
 			// 수정 모드
-			const todoValue = $li.querySelector(".label").textContent;
-			$li.classList.add("editing");
 			const $editInput = $li.querySelector(".edit");
+			const todoValue = $li.querySelector(".label").textContent;
 			$editInput.value = todoValue;
 			$editInput.focus();
+			$li.classList.add("editing");
 		}
 	});
 
@@ -66,19 +65,29 @@ const initEventListener = () => {
 			}
 		}
 	});
+	window.addEventListener("hashchange", hashrender);
 };
 
 // 그리기
 const render = () => {
-	$todoList.innerHTML = ``; // todoList 비우기
 	const currentTodo = getTodo();
-	const $todoCountItem = $todoCount.querySelector("strong");
-	$todoCountItem.textContent = currentTodo.length;
-	if (currentTodo.length) {
-		$todoList.innerHTML = currentTodo
-			.map((todos) => createHTML(todos))
-			.join("");
-	}
+	const $todoCountValue = $todoCount.querySelector("strong");
+	$todoCountValue.textContent = currentTodo.length;
+	updateUI(currentTodo);
+};
+
+// url 변경되었을때 그리기
+const hashrender = () => {
+	const currentTodo = getTodo();
+	const filterOption = getHashFilter();
+	const filteredTodo = filterTodo(currentTodo, filterOption);
+	const $todoCountValue = $todoCount.querySelector("strong");
+	$todoCountValue.textContent = filteredTodo.length; // 여기에 추가
+	updateUI(filteredTodo);
+};
+
+const updateUI = (todos) => {
+	$todoList.innerHTML = todos.map((todo) => createHTML(todo)).join("");
 };
 
 const createHTML = (todo) => {
@@ -94,6 +103,29 @@ const createHTML = (todo) => {
                 <input class="edit" value="새로운 타이틀" />
     </li>
     `;
+};
+
+const getHashFilter = () => {
+	const hash = window.location.hash.replace("#", "");
+	switch (hash) {
+		case "active":
+			return "active";
+		case "completed":
+			return "completed";
+		default:
+			return "all";
+	}
+};
+
+const filterTodo = (todos, filter) => {
+	switch (filter) {
+		case "active":
+			return todos.filter((todo) => !todo.completed);
+		case "completed":
+			return todos.filter((todo) => todo.completed);
+		default:
+			return todos;
+	}
 };
 
 const addTodo = (text) => {
