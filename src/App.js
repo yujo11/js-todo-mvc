@@ -18,7 +18,7 @@ export default function App({ targetElement }) {
   };
 
   this.setState = () => {
-    this.state.todos = getTodoList(LOCALSTORAGE_KEY);
+    this.state.todos = getTodoList(LOCALSTORAGE_KEY, []);
 
     const filteredTodos = filterTodos(this.state);
 
@@ -48,7 +48,8 @@ export default function App({ targetElement }) {
   const todoForm = new TodoForm({
     targetElement,
     onSubmit: (newTodo) => {
-      const todos = getTodoList(LOCALSTORAGE_KEY);
+      const todos = getTodoList(LOCALSTORAGE_KEY, []);
+
       const nextTodos = [...todos, newTodo];
       setTodoList(LOCALSTORAGE_KEY, nextTodos);
 
@@ -64,7 +65,7 @@ export default function App({ targetElement }) {
     initialState: this.state.todos,
 
     onToggle: (todoId) => {
-      const totalTodoState = getTodoList(LOCALSTORAGE_KEY);
+      const totalTodoState = getTodoList(LOCALSTORAGE_KEY, []);
       const updatedTotalTodoState = totalTodoState.map((todo) =>
         todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted } : todo
       );
@@ -73,7 +74,7 @@ export default function App({ targetElement }) {
       this.setState();
     },
     onDelete: (todoId) => {
-      const totalTodoState = getTodoList(LOCALSTORAGE_KEY);
+      const totalTodoState = getTodoList(LOCALSTORAGE_KEY, []);
       const updatedTotalTodoState = totalTodoState.filter(
         (todo) => todo.id !== todoId
       );
@@ -82,7 +83,7 @@ export default function App({ targetElement }) {
       this.setState();
     },
     onChangeMode: (todoId, todoContent = null) => {
-      const totalTodoState = getTodoList(LOCALSTORAGE_KEY);
+      const totalTodoState = getTodoList(LOCALSTORAGE_KEY, []);
       const updatedTotalTodoState = totalTodoState.map((todo) =>
         todo.id === todoId
           ? {
