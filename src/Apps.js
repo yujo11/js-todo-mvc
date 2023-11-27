@@ -1,8 +1,11 @@
 import Title from "./components/Title.js";
-import TodoCount from "./components/TodoCount.js";
 import TodoForm from "./components/TodoForm.js";
+
 import TodoList from "./components/todoList/TodoList.js";
+import TodoCount from "./components/TodoCount.js";
+
 import { LOCALSTORAGE_KEY } from "./constants/constants.js";
+
 import checkNewComponent from "./utils/checkNewComponent.js";
 import { getTodoList, setTodoList } from "./utils/storage/localStorage.js";
 
