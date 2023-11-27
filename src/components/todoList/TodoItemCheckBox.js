@@ -1,12 +1,10 @@
-export default function TodoItemCheckBox({
-  targetElement,
-  todoState,
-  onToggle,
-}) {
+import StringToNumber from "../../utils/stringToNumber.js";
+
+export default function TodoItemCheckBox({ targetElement, todo, onToggle }) {
   const todoCheckBoxElement = document.createElement("input");
   targetElement.appendChild(todoCheckBoxElement);
 
-  const { id, isCompleted } = todoState;
+  const { id, isCompleted } = todo;
   todoCheckBoxElement.type = "checkbox";
   todoCheckBoxElement.dataset.id = "todo-checkbox";
   todoCheckBoxElement.dataset.todoid = id;
@@ -18,7 +16,7 @@ export default function TodoItemCheckBox({
 
     if (todoItem != null) {
       const { todoid } = event.target.dataset;
-      onToggle(Number(todoid));
+      onToggle(StringToNumber(todoid));
     }
   });
 }

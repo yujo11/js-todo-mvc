@@ -1,12 +1,10 @@
-export default function TodoItemCheckBox({
-  targetElement,
-  todoState,
-  onDelete,
-}) {
+import StringToNumber from "../../utils/stringToNumber.js";
+
+export default function TodoItemCheckBox({ targetElement, todo, onDelete }) {
   const todoDeleteButtonElement = document.createElement("button");
   targetElement.appendChild(todoDeleteButtonElement);
 
-  const { id } = todoState;
+  const { id } = todo;
   todoDeleteButtonElement.dataset.id = "todo-delete-button";
   todoDeleteButtonElement.dataset.todoid = id;
   todoDeleteButtonElement.classList.add("destroy");
@@ -16,7 +14,7 @@ export default function TodoItemCheckBox({
 
     if (todoItem != null) {
       const { todoid } = event.target.dataset;
-      onDelete(Number(todoid));
+      onDelete(StringToNumber(todoid));
     }
   });
 }

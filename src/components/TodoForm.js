@@ -30,6 +30,7 @@ export default function TodoForm({ targetElement, onSubmit }) {
       id: newTodoId,
       content: newTodoContent,
       isCompleted: newTodoIsCompleted,
+      isEditing: false,
     });
   });
 }
