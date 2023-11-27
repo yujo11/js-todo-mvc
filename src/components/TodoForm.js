@@ -1,4 +1,8 @@
+import CheckNewComponent from "../utils/checkNewComponent.js";
+
 export default function TodoForm({ targetElement, onSubmit }) {
+  CheckNewComponent(TodoForm, this);
+
   const formElement = document.createElement("form");
   formElement.id = "new-todo-form";
 

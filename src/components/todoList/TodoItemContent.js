@@ -1,8 +1,8 @@
-export default function TodoItemCheckBox({
-  targetElement,
-  todo,
-  onChangeMode,
-}) {
+import CheckNewComponent from "../../utils/checkNewComponent.js";
+
+export default function TodoItemContent({ targetElement, todo, onChangeMode }) {
+  CheckNewComponent(TodoItemContent, this);
+
   const todoContentElement = document.createElement("label");
   targetElement.appendChild(todoContentElement);
 
@@ -15,10 +15,9 @@ export default function TodoItemCheckBox({
 
   todoContentElement.addEventListener("dblclick", (event) => {
     const liElement = event.target.closest("li");
-    console.log(event.target);
-    console.log(liElement);
+
     if (liElement == null) return;
-    const { id, todoid } = event.target.dataset;
+    const { todoid } = event.target.dataset;
 
     if (isEditing === true) return;
     onChangeMode(Number(todoid));

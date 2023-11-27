@@ -1,3 +1,4 @@
+import CheckNewComponent from "../../utils/checkNewComponent.js";
 import StringToNumber from "../../utils/stringToNumber.js";
 import TodoItemCheckBox from "./TodoItemCheckBox.js";
 import TodoItemContent from "./TodoItemContent.js";
@@ -10,6 +11,8 @@ export default function TodoItem({
   onDelete,
   onChangeMode,
 }) {
+  CheckNewComponent(TodoItem, this);
+
   const todoItemElement = document.createElement("li");
   targetElement.appendChild(todoItemElement);
 

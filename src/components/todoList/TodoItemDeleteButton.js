@@ -1,6 +1,13 @@
+import CheckNewComponent from "../../utils/checkNewComponent.js";
 import StringToNumber from "../../utils/stringToNumber.js";
 
-export default function TodoItemCheckBox({ targetElement, todo, onDelete }) {
+export default function TodoItemDeleteButton({
+  targetElement,
+  todo,
+  onDelete,
+}) {
+  CheckNewComponent(TodoItemDeleteButton, this);
+
   const todoDeleteButtonElement = document.createElement("button");
   targetElement.appendChild(todoDeleteButtonElement);
 

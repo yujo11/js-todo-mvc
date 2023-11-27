@@ -1,4 +1,8 @@
+import CheckNewComponent from "../utils/checkNewComponent.js";
+
 export default function TodoCount({ targetElement, initialState, onSelect }) {
+  CheckNewComponent(TodoCount, this);
+
   this.state = initialState;
 
   this.setState = (nextState) => {

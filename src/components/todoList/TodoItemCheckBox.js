@@ -1,6 +1,9 @@
+import CheckNewComponent from "../../utils/checkNewComponent.js";
 import StringToNumber from "../../utils/stringToNumber.js";
 
 export default function TodoItemCheckBox({ targetElement, todo, onToggle }) {
+  CheckNewComponent(TodoItemCheckBox, this);
+
   const todoCheckBoxElement = document.createElement("input");
   targetElement.appendChild(todoCheckBoxElement);
 
