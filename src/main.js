@@ -1,4 +1,4 @@
-import App from "./Apps.js";
+import App from "./App.js/index.js";
 
 const appElement = document.querySelector("#app");
 
