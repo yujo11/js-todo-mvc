@@ -2,7 +2,7 @@ import Title from "./components/Title.js";
 import TodoCount from "./components/TodoCount.js";
 import TodoForm from "./components/TodoForm.js";
 import TodoList from "./components/todoList/TodoList.js";
-import { LOCALSTORAGE_KEY } from "./constants/Constants.js";
+import { LOCALSTORAGE_KEY } from "./constants/constants.js";
 import CheckNewComponent from "./utils/checkNewComponent.js";
 import { getTodoList, setTodoList } from "./utils/storage/localStorage.js";
 
@@ -74,8 +74,8 @@ export default function App({ targetElement }) {
       const updatedTotalTodoState = totalTodoState.filter(
         (todo) => todo.id !== todoId
       );
-      setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
 
+      setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
       this.setState();
     },
     onChangeMode: (todoId, todoContent = null) => {
@@ -89,8 +89,8 @@ export default function App({ targetElement }) {
             }
           : todo
       );
-      setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
 
+      setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
       this.setState();
     },
   });
