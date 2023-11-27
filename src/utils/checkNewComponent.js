@@ -1,4 +1,4 @@
-export default function CheckNewComponent(target, self) {
+export default function checkNewComponent(target, self) {
   try {
     if (self instanceof target == false) {
       throw new Error("new 키워드를 붙이셔야 합니다.");

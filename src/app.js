@@ -3,11 +3,11 @@ import TodoCount from "./components/TodoCount.js";
 import TodoForm from "./components/TodoForm.js";
 import TodoList from "./components/todoList/TodoList.js";
 import { LOCALSTORAGE_KEY } from "./constants/constants.js";
-import CheckNewComponent from "./utils/checkNewComponent.js";
+import checkNewComponent from "./utils/checkNewComponent.js";
 import { getTodoList, setTodoList } from "./utils/storage/localStorage.js";
 
 export default function App({ targetElement }) {
-  CheckNewComponent(App, this);
+  checkNewComponent(App, this);
 
   this.state = {
     todos: getTodoList(LOCALSTORAGE_KEY, []),

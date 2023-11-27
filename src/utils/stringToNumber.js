@@ -1,4 +1,4 @@
-export default function StringToNumber(string) {
+export default function stringToNumber(string) {
   try {
     const changedString = Number(string);
     if (isNaN(changedString)) {

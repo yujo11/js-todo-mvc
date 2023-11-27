@@ -1,12 +1,12 @@
-import CheckNewComponent from "../../utils/checkNewComponent.js";
-import StringToNumber from "../../utils/stringToNumber.js";
+import checkNewComponent from "../../utils/checkNewComponent.js";
+import stringToNumber from "../../utils/stringToNumber.js";
 
 export default function TodoItemDeleteButton({
   targetElement,
   todo,
   onDelete,
 }) {
-  CheckNewComponent(TodoItemDeleteButton, this);
+  checkNewComponent(TodoItemDeleteButton, this);
 
   const todoDeleteButtonElement = document.createElement("button");
   targetElement.appendChild(todoDeleteButtonElement);
@@ -21,7 +21,7 @@ export default function TodoItemDeleteButton({
 
     if (todoItem != null) {
       const { todoid } = event.target.dataset;
-      onDelete(StringToNumber(todoid));
+      onDelete(stringToNumber(todoid));
     }
   });
 }

@@ -1,8 +1,8 @@
-import CheckNewComponent from "../../utils/checkNewComponent.js";
-import StringToNumber from "../../utils/stringToNumber.js";
+import checkNewComponent from "../../utils/checkNewComponent.js";
+import stringToNumber from "../../utils/stringToNumber.js";
 
 export default function TodoItemCheckBox({ targetElement, todo, onToggle }) {
-  CheckNewComponent(TodoItemCheckBox, this);
+  checkNewComponent(TodoItemCheckBox, this);
 
   const todoCheckBoxElement = document.createElement("input");
   targetElement.appendChild(todoCheckBoxElement);
@@ -19,7 +19,7 @@ export default function TodoItemCheckBox({ targetElement, todo, onToggle }) {
 
     if (todoItem != null) {
       const { todoid } = event.target.dataset;
-      onToggle(StringToNumber(todoid));
+      onToggle(stringToNumber(todoid));
     }
   });
 }

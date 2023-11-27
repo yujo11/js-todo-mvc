@@ -1,7 +1,7 @@
-import CheckNewComponent from "../../utils/checkNewComponent.js";
+import checkNewComponent from "../../utils/checkNewComponent.js";
 
 export default function TodoItemContent({ targetElement, todo, onChangeMode }) {
-  CheckNewComponent(TodoItemContent, this);
+  checkNewComponent(TodoItemContent, this);
 
   const todoContentElement = document.createElement("label");
   targetElement.appendChild(todoContentElement);

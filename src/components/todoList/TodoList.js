@@ -1,4 +1,4 @@
-import CheckNewComponent from "../../utils/checkNewComponent.js";
+import checkNewComponent from "../../utils/checkNewComponent.js";
 import TodoItem from "./TodoItem.js";
 
 export default function TodoList({
@@ -8,7 +8,7 @@ export default function TodoList({
   onDelete,
   onChangeMode,
 }) {
-  CheckNewComponent(TodoList, this);
+  checkNewComponent(TodoList, this);
 
   this.state = initialState;
 

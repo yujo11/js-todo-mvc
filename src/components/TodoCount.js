@@ -1,7 +1,7 @@
-import CheckNewComponent from "../utils/checkNewComponent.js";
+import checkNewComponent from "../utils/checkNewComponent.js";
 
 export default function TodoCount({ targetElement, initialState, onSelect }) {
-  CheckNewComponent(TodoCount, this);
+  checkNewComponent(TodoCount, this);
 
   this.state = initialState;
 

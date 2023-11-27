@@ -1,5 +1,5 @@
-import CheckNewComponent from "../../utils/checkNewComponent.js";
-import StringToNumber from "../../utils/stringToNumber.js";
+import checkNewComponent from "../../utils/checkNewComponent.js";
+import stringToNumber from "../../utils/stringToNumber.js";
 import TodoItemCheckBox from "./TodoItemCheckBox.js";
 import TodoItemContent from "./TodoItemContent.js";
 import TodoItemDeleteButton from "./TodoItemDeleteButton.js";
@@ -11,7 +11,7 @@ export default function TodoItem({
   onDelete,
   onChangeMode,
 }) {
-  CheckNewComponent(TodoItem, this);
+  checkNewComponent(TodoItem, this);
 
   const todoItemElement = document.createElement("li");
   targetElement.appendChild(todoItemElement);
@@ -62,13 +62,13 @@ export default function TodoItem({
       if (todoContentElement == null) return;
 
       onChangeMode(
-        StringToNumber(liElement.dataset.todoid),
+        stringToNumber(liElement.dataset.todoid),
         event.target.value
       );
     } else if (event.key === "Escape") {
       if (todoContentElement == null) return;
 
-      onChangeMode(StringToNumber(liElement.dataset.todoid));
+      onChangeMode(stringToNumber(liElement.dataset.todoid));
     }
   });
 }
