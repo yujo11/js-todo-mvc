@@ -86,11 +86,15 @@ const updateUI = (todos) => {
 
 const createHTML = (todo) => {
 	return `
-    <li data-id="${todo.id}" class="${todo.completed ? "completed" : ""}">
+    <li
+		data-id="${todo.id}"
+		class="${todo.completed ? "completed" : ""}">
 			<div class="view">
-                <input class="toggle" type="checkbox" ${
-									todo.completed ? "checked" : ""
-								}/>
+                <input
+				class="toggle"
+				type="checkbox" ${
+					todo.completed ? "checked" : ""}
+				/>
                 <label class="label">${todo.text}</label>
                 <button class="destroy"></button>
 			</div>
