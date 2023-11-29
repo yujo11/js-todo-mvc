@@ -56,7 +56,7 @@ export default function TodoItem({
   inputElement.addEventListener("keyup", (event) => {
     const liElement = event.target.closest("li");
 
-    if (inputElement == null) return;
+    if (liElement == null) return;
     const todoContentElement = liElement.querySelector("label");
 
     if (event.key === "Enter") {

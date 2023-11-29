@@ -29,8 +29,8 @@ export default function App({ targetElement }) {
     };
 
     todoList.setState({
+      ...this.state,
       todos: filteredTodos,
-      selectedTodo: this.state.selectedTodo,
     });
 
     todoCount.setState(nextState);
@@ -57,7 +57,7 @@ export default function App({ targetElement }) {
 
       const nextTodos = [...todos, newTodo];
       setTodoList(LOCALSTORAGE_KEY, nextTodos);
-
+      this.state.selectedTodo = null;
       this.setState();
     },
   });
