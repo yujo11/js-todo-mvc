@@ -72,7 +72,9 @@ export default function App({ targetElement }) {
     onToggle: (todoId) => {
       const totalTodoState = getTodoList(LOCALSTORAGE_KEY, []);
       const updatedTotalTodoState = totalTodoState.map((todo) =>
-        todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        todo.id === todoId && todo.isEditing === false
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : todo
       );
 
       setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
