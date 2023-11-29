@@ -15,6 +15,7 @@ export default function App({ targetElement }) {
   this.state = {
     todos: getTodoList(LOCALSTORAGE_KEY, []),
     todoFilter: "allTodo",
+    selectedTodo: null,
   };
 
   this.setState = () => {
@@ -27,7 +28,11 @@ export default function App({ targetElement }) {
       todos: filteredTodos,
     };
 
-    todoList.setState(filteredTodos);
+    todoList.setState({
+      todos: filteredTodos,
+      selectedTodo: this.state.selectedTodo,
+    });
+
     todoCount.setState(nextState);
   };
 
@@ -62,7 +67,7 @@ export default function App({ targetElement }) {
 
   const todoList = new TodoList({
     targetElement: mainElement,
-    initialState: this.state.todos,
+    initialState: this.state,
 
     onToggle: (todoId) => {
       const totalTodoState = getTodoList(LOCALSTORAGE_KEY, []);
@@ -95,6 +100,7 @@ export default function App({ targetElement }) {
       );
 
       setTodoList(LOCALSTORAGE_KEY, updatedTotalTodoState);
+      this.state.selectedTodo = todoId;
       this.setState();
     },
   });

@@ -50,6 +50,7 @@ export default function TodoItem({
   const inputElement = document.createElement("input");
   inputElement.classList.add("edit");
   inputElement.value = content;
+  inputElement.name = id;
   todoItemElement.appendChild(inputElement);
 
   inputElement.addEventListener("keyup", (event) => {

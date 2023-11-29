@@ -19,6 +19,7 @@ export default function TodoList({
   };
 
   this.render = () => {
+    const { todos, selectedTodo } = this.state;
     if (document.querySelector("#todo-list") != null) {
       targetElement.replaceChildren();
     }
@@ -29,7 +30,7 @@ export default function TodoList({
 
     const fragment = document.createDocumentFragment();
 
-    this.state.forEach((todo) => {
+    todos.forEach((todo) => {
       const todoItem = new TodoItem({
         targetElement: fragment,
         todo,
@@ -41,6 +42,14 @@ export default function TodoList({
 
     todoListElement.appendChild(fragment);
     targetElement.prepend(todoListElement);
+
+    const inputElements = document?.querySelectorAll(".edit");
+    if (inputElements != null && selectedTodo != null) {
+      const inputElement = Array.from(inputElements).find(
+        (inputElement) => inputElement.name === String(selectedTodo)
+      );
+      inputElement.focus();
+    }
   };
 
   this.render();
