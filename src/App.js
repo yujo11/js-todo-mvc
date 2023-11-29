@@ -35,7 +35,7 @@ export default function App() {
             else if (mode === 'delete'){
                 this.setState({
                     ...this.state,
-                    completedCount: isToggled ? this.completedCount-1 : this.completedCount,
+                    completedCount: isToggled ? this.state.completedCount-1 : this.state.completedCount,
                     totalCount: this.state.totalCount-1
                 })
             }

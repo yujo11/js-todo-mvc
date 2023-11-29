@@ -20,8 +20,8 @@ export default function TodoForm({updateList, updateCount}) {
                     updateCount('delete', isToggled)
                     updateList()
                 },
-                onToggle: (isCompleted) => { 
-                    updateCount('toggle', isCompleted) 
+                onToggle: (isToggled) => { 
+                    updateCount('toggle', isToggled) 
                     updateList()
                 }
             })
