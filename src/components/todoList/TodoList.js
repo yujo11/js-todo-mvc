@@ -48,7 +48,7 @@ export default function TodoList({
       const inputElement = Array.from(inputElements).find(
         (inputElement) => inputElement.name === String(selectedTodo)
       );
-      console.log(inputElements);
+
       inputElement?.focus();
     }
   };
