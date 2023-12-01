@@ -9,6 +9,7 @@ export default function TodoList({
 	toggleTodo,
 	editTodo,
 	countTodo,
+	setEditTodo,
 }) {
 	if (!new.target) {
 		throw new Error("컴포넌트 앞에 new를 붙여서 생성해주세요")
@@ -43,17 +44,7 @@ export default function TodoList({
 		$target.addEventListener("dblclick", (e) => {
 			const $li = e.target.closest("li")
 			if ($li) {
-				// 수정 모드 삭제
-				$target.querySelectorAll(".editing").forEach(($Li) => {
-					$Li.classList.remove("editing")
-				})
-
-				// 수정 모드
-				const $editInput = $li.querySelector(".edit")
-				const todoValue = $li.querySelector(".label").textContent
-				$editInput.value = todoValue
-				$li.classList.add("editing")
-				$editInput.focus()
+				setEditTodo(Number($li.dataset.id), e.target.textContent)
 			}
 		})
 
@@ -62,13 +53,14 @@ export default function TodoList({
 			const $li = e.target.closest("li")
 			if ($li) {
 				if (e.key === "Enter") {
-					$li.classList.remove("editing")
 					editTodo(Number($li.dataset.id), e.target.value)
 				} else if (e.key === "Escape") {
-					$li.classList.remove("editing")
+					editTodo(Number($li.dataset.id))
 				}
 			}
 		})
+
+		// 필터링
 		window.addEventListener("hashchange", this.render)
 	}
 
