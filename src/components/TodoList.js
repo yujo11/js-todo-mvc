@@ -10,6 +10,9 @@ export default function TodoList({
 	editTodo,
 	countTodo,
 }) {
+	if (!new.target) {
+		throw new Error("컴포넌트 앞에 new를 붙여서 생성해주세요")
+	}
 	this.state = initialState
 
 	this.init = () => {
