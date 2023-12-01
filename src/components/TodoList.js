@@ -3,25 +3,27 @@ import getHashFilter from "../../utils/getHashFilter.js"
 import renderTodo from "./../../utils/renderTodo.js"
 
 export default function TodoList({
+	$target,
 	initialState,
 	removeTodo,
 	toggleTodo,
 	editTodo,
-	handleTodoCount,
+	countTodo,
 }) {
-	const $todoList = document.querySelector(".todo-list")
 	this.state = initialState
+
 	this.init = () => {
 		this.initEventListener()
 		this.render()
 	}
+
 	this.setState = (nextState) => {
 		this.state = nextState
 		this.render()
 	}
 
 	this.initEventListener = () => {
-		$todoList.addEventListener("click", (e) => {
+		$target.addEventListener("click", (e) => {
 			const $li = e.target.closest("li")
 			if ($li) {
 				const classList = e.target.classList
@@ -35,11 +37,11 @@ export default function TodoList({
 		})
 
 		// 더블클릭
-		$todoList.addEventListener("dblclick", (e) => {
+		$target.addEventListener("dblclick", (e) => {
 			const $li = e.target.closest("li")
 			if ($li) {
 				// 수정 모드 삭제
-				$todoList.querySelectorAll(".editing").forEach(($Li) => {
+				$target.querySelectorAll(".editing").forEach(($Li) => {
 					$Li.classList.remove("editing")
 				})
 
@@ -53,7 +55,7 @@ export default function TodoList({
 		})
 
 		// 수정
-		$todoList.addEventListener("keydown", (e) => {
+		$target.addEventListener("keydown", (e) => {
 			const $li = e.target.closest("li")
 			if ($li) {
 				if (e.key === "Enter") {
@@ -66,17 +68,18 @@ export default function TodoList({
 		})
 		window.addEventListener("hashchange", this.render)
 	}
+
 	// 그리기
 	this.render = () => {
 		const currentTodo = this.state
 		const filterOption = getHashFilter()
 		const filteredTodo = filterTodo(currentTodo, filterOption)
-		handleTodoCount(filteredTodo.length)
+		countTodo(filteredTodo.length)
 		this.updateUI(filteredTodo)
 	}
 
 	this.updateUI = (todos) => {
-		$todoList.innerHTML = todos.map((todo) => renderTodo(todo)).join("")
+		$target.innerHTML = todos.map((todo) => renderTodo(todo)).join("")
 	}
 
 	this.init()

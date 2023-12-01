@@ -4,12 +4,19 @@ import TodoList from "./components/TodoList.js"
 
 export default function App() {
 	const $todoCount = document.querySelector(".todo-count")
-	const updateState = (nextState) => {
+	const $todoInput = document.querySelector(".new-todo")
+	const $todoList = document.querySelector(".todo-list")
+
+	this.state = getItem("todolist", [])
+
+	this.setState = (nextState) => {
+		this.state = nextState
 		todoList.setState(nextState)
 		setItem("todolist", nextState)
 	}
 
 	new TodoForm({
+		$target: $todoInput,
 		addTodo: (text) => {
 			const updatedTodo = [
 				...todoList.state,
@@ -19,31 +26,33 @@ export default function App() {
 					completed: false,
 				},
 			]
-			updateState(updatedTodo)
+			this.setState(updatedTodo)
 		},
 	})
 
 	const todoList = new TodoList({
-		initialState: getItem("todolist", []),
+		$target: $todoList,
+		initialState: this.state,
 		removeTodo: (id) => {
-			const updatedTodo = todoList.state.filter((todo) => todo.id !== id)
-			updateState(updatedTodo)
+			const updatedTodo = this.state.filter((todo) => todo.id !== id)
+			this.setState(updatedTodo)
 		},
 		toggleTodo: (id) => {
-			const updatedTodo = todoList.state.map((todo) =>
+			const updatedTodo = this.state.map((todo) =>
 				todo.id === id ? { ...todo, completed: !todo.completed } : todo
 			)
-			updateState(updatedTodo)
+			this.setState(updatedTodo)
 		},
 		editTodo: (id, todoValue) => {
-			const updatedTodo = todoList.state.map((todo) =>
+			const updatedTodo = this.state.map((todo) =>
 				todo.id === id ? { ...todo, text: todoValue } : todo
 			)
-			updateState(updatedTodo)
+			console.log(updatedTodo)
+			this.setState(updatedTodo)
 		},
-		handleTodoCount: (count) => {
+		countTodo: (count) => {
 			const $todoCountValue = $todoCount.querySelector("strong")
-			$todoCountValue.textContent = count // 여기에 추가
+			$todoCountValue.textContent = count
 		},
 	})
 }
