@@ -47,7 +47,6 @@ export default function App() {
 			const updatedTodo = this.state.map((todo) =>
 				todo.id === id ? { ...todo, text: todoValue } : todo
 			)
-			console.log(updatedTodo)
 			this.setState(updatedTodo)
 		},
 		countTodo: (count) => {
