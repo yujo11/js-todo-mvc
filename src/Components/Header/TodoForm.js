@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE, MIN_CHAR, PLACE_HOLDER } from "../../Constants.js";
+import { ALERT_MESSAGE, MIN_CHAR, TODO_FORM_PLACE_HOLDER } from "../../Constants.js";
 
 export default function TodoForm({ target, state, onSubmit }) {
   const formElement = document.createElement("form");
@@ -7,7 +7,7 @@ export default function TodoForm({ target, state, onSubmit }) {
 
   const inputElement = document.createElement("input");
   inputElement.setAttribute("class", "header__input");
-  inputElement.setAttribute("placeholder", PLACE_HOLDER);
+  inputElement.setAttribute("placeholder", TODO_FORM_PLACE_HOLDER);
   formElement.appendChild(inputElement);
 
   this.state = state;
