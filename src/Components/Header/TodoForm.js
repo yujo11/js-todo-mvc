@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE, PLACE_HOLDER } from "../../Constants.js";
+import { ALERT_MESSAGE, MIN_CHAR, PLACE_HOLDER } from "../../Constants.js";
 
 export default function TodoForm({ target, state, onSubmit }) {
   const formElement = document.createElement("form");
@@ -26,7 +26,7 @@ export default function TodoForm({ target, state, onSubmit }) {
 
     const newTodo = inputElement.value.trim();
 
-    if (newTodo.length < 2) {
+    if (newTodo.length < MIN_CHAR) {
       alert(ALERT_MESSAGE.INPUT);
       return;
     }

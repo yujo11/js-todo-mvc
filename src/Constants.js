@@ -1,6 +1,7 @@
 export const APP_TODO_TITLE = "TODOS";
 export const STORAGE_KEY = "TodoList";
 export const PLACE_HOLDER = "할 일을 입력하세요!";
+export const MIN_CHAR = 2;
 
 export const FILTER_OPTIONS = [
   { option: "All", text: "전체 항목", isDefault: true },
