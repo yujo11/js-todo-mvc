@@ -92,13 +92,14 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
   });
 
   const onEditingHandler = (event) => {
-    if (event.key === "Enter" || event.key === "Escape") {
+    if (event.key === "Escape" || event.key === "Enter") {
       event.preventDefault();
+
       const target = event.target;
       const editedTitle = target.innerText.trim();
       const { id } = target.closest("li").dataset;
-      // 만든 유틸 함수 사용하기
-      if (this.state.saveTodoTitle !== editedTitle) {
+
+      if (event.key === "Enter" && this.state.saveTodoTitle !== editedTitle) {
         onEdited({
           editedTitle,
           id,
@@ -109,6 +110,10 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       target.classList.remove("editing");
       target.removeEventListener("keydown", onEditingHandler);
       toggleEditMode(false);
+      if (event.key === "Escape") {
+        target.innerText = this.state.saveTodoTitle;
+      }
+
       this.state.saveTodoTitle = "";
     }
   };
