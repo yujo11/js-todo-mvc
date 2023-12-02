@@ -1,4 +1,4 @@
-import { IMAGE_SRC_DELETE } from "../../Constants.js";
+import { IMAGE_SRC } from "../../Constants.js";
 
 export default function ListButton({ target }) {
   const buttonElement = document.createElement("button");
@@ -6,7 +6,7 @@ export default function ListButton({ target }) {
   target.appendChild(buttonElement);
 
   const buttonImgElement = document.createElement("img");
-  buttonImgElement.setAttribute("src", IMAGE_SRC_DELETE);
+  buttonImgElement.setAttribute("src", IMAGE_SRC.DELETE);
   buttonImgElement.setAttribute("class", "todolist__deletebutton-img");
   buttonElement.appendChild(buttonImgElement);
 }

@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE_EDIT, ALERT_MESSAGE_INPUT, PLACE_HOLDER } from "../../Constants.js";
+import { ALERT_MESSAGE, PLACE_HOLDER } from "../../Constants.js";
 
 export default function TodoForm({ target, state, onSubmit }) {
   const formElement = document.createElement("form");
@@ -20,14 +20,14 @@ export default function TodoForm({ target, state, onSubmit }) {
     e.preventDefault();
     const { isEditMode } = this.state;
     if (isEditMode) {
-      alert(ALERT_MESSAGE_EDIT);
+      alert(ALERT_MESSAGE.EDIT);
       return;
     }
 
     const newTodo = inputElement.value.trim();
 
     if (newTodo.length < 2) {
-      alert(ALERT_MESSAGE_INPUT);
+      alert(ALERT_MESSAGE.INPUT);
       return;
     }
 

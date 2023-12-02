@@ -1,5 +1,5 @@
-import { ALERT_MESSAGE_EDIT } from "../../Constants.js";
-import { isUpdatedPrimitiveValue, isUpdatedReferenceValue } from "../../function/validate.js";
+import { ALERT_MESSAGE } from "../../Constants.js";
+import { isUpdatedReferenceValue } from "../../function/validate.js";
 import List from "./List.js";
 
 export default function TodoList({ target, state, onToggle, onDelete, onEdited, toggleEditMode }) {
@@ -53,7 +53,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
     if (!id) return;
 
     if (this.state.isEditMode && className !== "todoList__title editing") {
-      alert(ALERT_MESSAGE_EDIT);
+      alert(ALERT_MESSAGE.EDIT);
       return;
     }
 
@@ -98,7 +98,7 @@ export default function TodoList({ target, state, onToggle, onDelete, onEdited, 
       const editedTitle = target.innerText.trim();
       const { id } = target.closest("li").dataset;
       // 만든 유틸 함수 사용하기
-      if (isUpdatedPrimitiveValue(this.state.saveTodoTitle, editedTitle)) {
+      if (this.state.saveTodoTitle !== editedTitle) {
         onEdited({
           editedTitle,
           id,

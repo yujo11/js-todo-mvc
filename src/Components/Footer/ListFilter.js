@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE_EDIT, FILTER_OPTIONS } from "../../Constants.js";
+import { ALERT_MESSAGE, FILTER_OPTIONS } from "../../Constants.js";
 import ListFilterButton from "./ListFilterButton.js";
 
 export default function ListFilter({ target, state, onChange }) {
@@ -29,7 +29,7 @@ export default function ListFilter({ target, state, onChange }) {
   ulElement.addEventListener("click", (e) => {
     if (this.state.isEditMode) {
       e.preventDefault();
-      alert(ALERT_MESSAGE_EDIT);
+      alert(ALERT_MESSAGE.EDIT);
       return;
     }
     const { value } = e.target.dataset;

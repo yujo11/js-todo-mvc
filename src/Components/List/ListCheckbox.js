@@ -1,4 +1,4 @@
-import { IMAGE_SRC_CHECK } from "../../Constants.js";
+import { IMAGE_SRC } from "../../Constants.js";
 
 export default function ListCheckbox({ target, isCompleted, id }) {
   const inputElement = document.createElement("input");
@@ -15,7 +15,7 @@ export default function ListCheckbox({ target, isCompleted, id }) {
   target.appendChild(labelElement);
 
   const imgElement = document.createElement("img");
-  imgElement.setAttribute("src", IMAGE_SRC_CHECK);
+  imgElement.setAttribute("src", IMAGE_SRC.CHECK);
   imgElement.setAttribute("class", "todolist__checkbox-img");
 
   labelElement.appendChild(imgElement);

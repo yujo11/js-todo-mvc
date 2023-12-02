@@ -1,4 +1,3 @@
-import { isUpdatedPrimitiveValue } from "../../function/validate.js";
 import Title from "./Title.js";
 import TodoForm from "./TodoForm.js";
 

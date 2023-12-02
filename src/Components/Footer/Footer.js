@@ -1,4 +1,3 @@
-import { isUpdatedPrimitiveValue } from "../../function/validate.js";
 import ListCounter from "./ListCounter.js";
 import ListFilter from "./ListFilter.js";
 
