@@ -12,12 +12,12 @@ export default function Footer({ target, state, onChange }) {
   this.setState = ({ newIsEditMode, newTotalCount }) => {
     const { isEditMode: prevEditMode, totalCount: prevTotalCount } = this.state;
 
-    if (isUpdatedPrimitiveValue(prevEditMode, newIsEditMode)) {
+    if (prevEditMode !== newIsEditMode) {
       this.state.isEditMode = newIsEditMode;
       listFilter.setState({ newIsEditMode });
     }
 
-    if (isUpdatedPrimitiveValue(prevTotalCount, newTotalCount)) {
+    if (prevTotalCount !== newTotalCount) {
       this.state.totalCount = newTotalCount;
       listCounter.setState({ newTotalCount });
     }

@@ -13,7 +13,7 @@ export default function Header({ target, state, onSubmit }) {
   this.setState = ({ newIsEditMode }) => {
     const { isEditMode: prevEditMode } = this.state;
 
-    if (isUpdatedPrimitiveValue(prevEditMode, newIsEditMode)) {
+    if (prevEditMode !== newIsEditMode) {
       this.state = { isEditMode: newIsEditMode };
       todoForm.setState(this.state);
     }
