@@ -49,7 +49,7 @@ export default function TodoList({
 		})
 
 		// 수정
-		$target.addEventListener("keydown", (e) => {
+		$target.addEventListener("keyup", (e) => {
 			const $li = e.target.closest("li")
 			if ($li) {
 				if (e.key === "Enter") {
