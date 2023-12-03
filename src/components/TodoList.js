@@ -33,6 +33,7 @@ export default function TodoList({
 			if (classList.contains("destroy")) {
 				removeTodo(Number(id))
 			} else if (classList.contains("toggle")) {
+				console.log("gg")
 				toggleTodo(Number(id))
 			}
 		})
@@ -90,7 +91,7 @@ export default function TodoList({
 		return `
     <li
 		data-id="${todo.id}"
-		class="${todo.completed ? "completed" : ""}${todo.edited ? "editing" : ""}">
+		class="${todo.completed ? "completed " : ""}${todo.edited ? "editing" : ""}">
 			<div class="view">
                 <input
 				class="toggle"

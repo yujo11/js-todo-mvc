@@ -48,6 +48,7 @@ export default function App() {
 		},
 
 		setEditTodo: (id, todoValue) => {
+			console.log(id, todoValue)
 			const updatedTodo = this.state.map((todo) =>
 				todo.id === id
 					? { ...todo, edited: true, text: todoValue }
