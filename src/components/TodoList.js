@@ -1,6 +1,6 @@
-import filterTodo from "../../utils/filterTodo.js"
-import getHashFilter from "../../utils/getHashFilter.js"
-import renderTodo from "./../../utils/renderTodo.js"
+import filterTodo from "../utils/filterTodo.js"
+import getHashFilter from "../utils/getHashFilter.js"
+import renderTodo from "../utils/renderTodo.js"
 
 export default function TodoList({
 	$target,

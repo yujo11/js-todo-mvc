@@ -1,18 +1,19 @@
-import { getItem, setItem } from "../utils/storage.js"
+import { getItem, setItem } from "./utils/storage.js"
 import TodoForm from "./components/TodoForm.js"
 import TodoList from "./components/TodoList.js"
+import { STORAGE_KEY } from "./constants/storageKey.js"
 
 export default function App() {
 	const $todoCount = document.querySelector(".todo-count")
 	const $todoInput = document.querySelector(".new-todo")
 	const $todoList = document.querySelector(".todo-list")
 
-	this.state = getItem("todolist", [])
+	this.state = getItem("STORAGE_KEY", [])
 
 	this.setState = (nextState) => {
 		this.state = nextState
 		todoList.setState(nextState)
-		setItem("todolist", nextState)
+		setItem("STORAGE_KEY", nextState)
 	}
 
 	new TodoForm({
