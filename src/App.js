@@ -8,12 +8,12 @@ export default function App() {
 	const $todoInput = document.querySelector(".new-todo")
 	const $todoList = document.querySelector(".todo-list")
 
-	this.state = getItem("STORAGE_KEY", [])
+	this.state = getItem(STORAGE_KEY, [])
 
 	this.setState = (nextState) => {
 		this.state = nextState
 		todoList.setState(nextState)
-		setItem("STORAGE_KEY", nextState)
+		setItem(STORAGE_KEY, nextState)
 	}
 
 	new TodoForm({
