@@ -1,7 +1,3 @@
-import filterTodo from "../utils/filterTodo.js"
-import getHashFilter from "../utils/getHashFilter.js"
-import renderTodo from "../utils/renderTodo.js"
-
 export default function TodoList({
 	$target,
 	initialState,
@@ -67,17 +63,58 @@ export default function TodoList({
 		window.addEventListener("hashchange", this.render)
 	}
 
+	this.filterTodo = (todos, filter) => {
+		switch (filter) {
+			case "active":
+				return todos.filter((todo) => !todo.completed)
+			case "completed":
+				return todos.filter((todo) => todo.completed)
+			default:
+				return todos
+		}
+	}
+
+	this.getHashFilter = () => {
+		const hash = window.location.hash.replace("#", "")
+		switch (hash) {
+			case "active":
+				return "active"
+			case "completed":
+				return "completed"
+			default:
+				return "all"
+		}
+	}
+
+	this.renderTodo = (todo) => {
+		return `
+    <li
+		data-id="${todo.id}"
+		class="${todo.completed ? "completed" : ""}${todo.edited ? "editing" : ""}">
+			<div class="view">
+                <input
+				class="toggle"
+				type="checkbox" ${todo.completed ? "checked" : ""}
+				/>
+                <label class="label">${todo.text}</label>
+                <button class="destroy"></button>
+			</div>
+                <input class="edit" value="${todo.text}" />
+    </li>
+    `
+	}
+
 	// 그리기
 	this.render = () => {
 		const currentTodo = this.state
-		const filterOption = getHashFilter()
-		const filteredTodo = filterTodo(currentTodo, filterOption)
+		const filterOption = this.getHashFilter()
+		const filteredTodo = this.filterTodo(currentTodo, filterOption)
 		countTodo(filteredTodo.length)
 		this.updateUI(filteredTodo)
 	}
 
 	this.updateUI = (todos) => {
-		$target.innerHTML = todos.map((todo) => renderTodo(todo)).join("")
+		$target.innerHTML = todos.map((todo) => this.renderTodo(todo)).join("")
 	}
 
 	this.init()
