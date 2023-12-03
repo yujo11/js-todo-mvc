@@ -29,34 +29,37 @@ export default function TodoList({
 	this.initEventListener = () => {
 		$target.addEventListener("click", (e) => {
 			const $li = e.target.closest("li")
-			if ($li) {
-				const classList = e.target.classList
-				const { id } = $li.dataset
-				if (classList.contains("destroy")) {
-					removeTodo(Number(id))
-				} else if (classList.contains("toggle")) {
-					toggleTodo(Number(id))
-				}
+			if (!$li) {
+				return
+			}
+			const classList = e.target.classList
+			const { id } = $li.dataset
+			if (classList.contains("destroy")) {
+				removeTodo(Number(id))
+			} else if (classList.contains("toggle")) {
+				toggleTodo(Number(id))
 			}
 		})
 
 		// 더블클릭
 		$target.addEventListener("dblclick", (e) => {
 			const $li = e.target.closest("li")
-			if ($li) {
-				setEditTodo(Number($li.dataset.id), e.target.textContent)
+			if (!$li) {
+				return
 			}
+			setEditTodo(Number($li.dataset.id), e.target.textContent)
 		})
 
 		// 수정
 		$target.addEventListener("keyup", (e) => {
 			const $li = e.target.closest("li")
-			if ($li) {
-				if (e.key === "Enter") {
-					editTodo(Number($li.dataset.id), e.target.value)
-				} else if (e.key === "Escape") {
-					editTodo(Number($li.dataset.id))
-				}
+			if (!$li) {
+				return
+			}
+			if (e.key === "Enter") {
+				editTodo(Number($li.dataset.id), e.target.value)
+			} else if (e.key === "Escape") {
+				editTodo(Number($li.dataset.id))
 			}
 		})
 
