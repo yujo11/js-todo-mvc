@@ -1,36 +1,32 @@
-const storage = window.localStorage;
+import { LOCALSTORAGE_KEY } from '../../constants/constants.js'
 
-export const getTodoList = (key, defaultValue) => {
+const storage = window.localStorage
+
+export const getTodoList = (defaultValue) => {
   try {
-    const storedItem = storage.getItem(key);
+    const storedItem = storage.getItem(LOCALSTORAGE_KEY)
 
-    if (storedItem == null) {
-      return defaultValue;
-    }
-
-    return JSON.parse(storedItem);
+    return storedItem == null ? defaultValue : JSON.parse(storedItem)
   } catch (error) {
-    console.error(error.message);
+    console.error(error.message)
   }
-};
-export const setTodoList = (key, newValue) => {
-  storage.setItem(key, JSON.stringify(newValue));
-};
+}
+export const setTodoList = (newValue) => {
+  storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newValue))
+}
 
 export const getTempTodo = (key, defaultValue) => {
   try {
-    const storedTodo = storage.getItem(key);
-    if (storedTodo == null) {
-      return defaultValue;
-    }
-    return JSON.parse(storedTodo);
+    const storedTodo = storage.getItem(key)
+
+    return storedTodo == null ? defaultValue : JSON.parse(storedTodo)
   } catch (error) {
-    console.error(error.message);
+    console.error(error.message)
   }
-};
+}
 export const setTempTodo = (key, newValue) => {
-  storage.setItem(key, JSON.stringify(newValue));
-};
+  storage.setItem(key, JSON.stringify(newValue))
+}
 export const removeTempTodo = (key) => {
-  storage.removeItem(key);
-};
+  storage.removeItem(key)
+}
