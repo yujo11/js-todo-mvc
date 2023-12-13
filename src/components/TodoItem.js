@@ -34,7 +34,7 @@ export default function TodoItem({ $target, title, onDelete, onToggle }) {
     const { isCompleted } = this.state;
     this.setState({
       ...this.state,
-      isCompleted: isCompleted ? false : true,
+      isCompleted: !isCompleted,
     });
 
     onToggle(this.state.isCompleted);

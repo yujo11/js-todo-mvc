@@ -18,9 +18,9 @@ export default function TodoMenu({ initialState, onSelectMenu }) {
       const $prevMenu = document.querySelector(`a[class*="${this.state}"]`);
       $prevMenu.classList.remove("selected");
 
-      $filter.classList.add("selected");
+      onSelectMenu($filter.className);
 
-      onSelectMenu($filter.classList[0]);
+      $filter.classList.add("selected");
 
       listTodos(this.state);
     });
