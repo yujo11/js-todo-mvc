@@ -14,17 +14,17 @@ export default function TodoForm({ addTodo, deleteTodo, toggleTodo }) {
       const createdTodo = new TodoItem({
         $target: $todoList,
         title: value,
-        onDelete: (id, isToggled) => {
+        onDelete: (id) => {
           const $deletedItem = document.getElementById(id);
           $todoList.removeChild($deletedItem);
-          deleteTodo(isToggled);
+          deleteTodo(id);
         },
         onToggle: (id) => {
           toggleTodo(id);
         },
       });
 
-      addTodo(createdTodo.state.id);
+      addTodo(createdTodo.id);
 
       $newTodoInput.value = "";
     }

@@ -4,15 +4,7 @@ export default function TodoItem({ $target, title, onDelete, onToggle }) {
 
   $target.appendChild($item);
 
-  this.state = {
-    isEditing: false,
-    isCompleted: false,
-    id: $item.id,
-  };
-
-  this.setState = (newState) => {
-    this.state = newState;
-  };
+  this.id = $item.id;
 
   this.render = () => {
     $item.innerHTML = `
@@ -32,18 +24,12 @@ export default function TodoItem({ $target, title, onDelete, onToggle }) {
     $item.classList.toggle("completed");
     $toggle.classList.toggle("checked");
 
-    const { isCompleted } = this.state;
-    this.setState({
-      ...this.state,
-      isCompleted: !isCompleted,
-    });
-
-    onToggle(this.state.id);
+    onToggle(this.id);
   });
 
   const $delButton = $item.querySelector(".destroy");
   $delButton.addEventListener("click", () => {
-    onDelete($item.id, this.state.isCompleted);
+    onDelete(this.id);
   });
 
   $item.addEventListener("dblclick", (e) => {

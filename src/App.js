@@ -36,9 +36,9 @@ export default function App() {
       });
       listTodos(this.state.selectedMenu);
     },
-    deleteTodo: (todo) => {
+    deleteTodo: (id) => {
       const newTodoList = [...this.state.todoList];
-      const deletedIdx = newTodoList.findIndex((item) => item == todo);
+      const deletedIdx = newTodoList.findIndex((item) => item.id === id);
 
       newTodoList.splice(deletedIdx, 1);
 
