@@ -5,43 +5,48 @@ import listTodos from "./utils/listTodos.js";
 
 export default function App() {
   this.state = {
-    completedCount: 0,
-    totalCount: 0,
     selectedMenu: "all",
+    todoList: [],
   };
 
   this.setState = (newState) => {
     this.state = newState;
     menu.setState(this.state.selectedMenu);
+    countTodo(this.state);
   };
 
   new TodoForm({
-    updateList: () => {
+    addTodo: (id) => {
+      this.setState({
+        ...this.state,
+        todoList: [...this.state.todoList, { id, toggled: false }],
+      });
       listTodos(this.state.selectedMenu);
     },
-    updateCount: (mode, isToggled = false) => {
-      if (mode === "add") {
-        this.setState({
-          ...this.state,
-          totalCount: this.state.totalCount + 1,
-        });
-      } else if (mode === "toggle") {
-        this.setState({
-          ...this.state,
-          completedCount: isToggled
-            ? this.state.completedCount + 1
-            : this.state.completedCount - 1,
-        });
-      } else if (mode === "delete") {
-        this.setState({
-          ...this.state,
-          completedCount: isToggled
-            ? this.state.completedCount - 1
-            : this.state.completedCount,
-          totalCount: this.state.totalCount - 1,
-        });
-      }
-      countTodo(this.state);
+    toggleTodo: (id) => {
+      const newTodoList = [...this.state.todoList];
+
+      const toggledIdx = newTodoList.findIndex((todo) => todo.id === id);
+
+      newTodoList[toggledIdx].toggled = !newTodoList[toggledIdx].toggled;
+
+      this.setState({
+        ...this.state,
+        todoList: newTodoList,
+      });
+      listTodos(this.state.selectedMenu);
+    },
+    deleteTodo: (todo) => {
+      const newTodoList = [...this.state.todoList];
+      const deletedIdx = newTodoList.findIndex((item) => item == todo);
+
+      newTodoList.splice(deletedIdx, 1);
+
+      this.setState({
+        ...this.state,
+        todoList: newTodoList,
+      });
+      listTodos(this.state.selectedMenu);
     },
   });
 
@@ -52,7 +57,6 @@ export default function App() {
         ...this.state,
         selectedMenu: menu,
       });
-      countTodo(this.state);
     },
   });
 }

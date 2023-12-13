@@ -7,6 +7,7 @@ export default function TodoItem({ $target, title, onDelete, onToggle }) {
   this.state = {
     isEditing: false,
     isCompleted: false,
+    id: $item.id,
   };
 
   this.setState = (newState) => {
@@ -37,7 +38,7 @@ export default function TodoItem({ $target, title, onDelete, onToggle }) {
       isCompleted: !isCompleted,
     });
 
-    onToggle(this.state.isCompleted);
+    onToggle(this.state.id);
   });
 
   const $delButton = $item.querySelector(".destroy");

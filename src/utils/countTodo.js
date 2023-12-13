@@ -1,9 +1,10 @@
-export default function countTodo({
-  completedCount,
-  totalCount,
-  selectedMenu,
-}) {
+export default function countTodo({ selectedMenu, todoList }) {
   const $count = document.querySelector(".count");
+
+  const totalCount = todoList.length;
+  const completedCount = todoList.filter(
+    (todo) => todo.toggled === true
+  ).length;
 
   if (selectedMenu === "active") {
     $count.textContent = totalCount - completedCount;
